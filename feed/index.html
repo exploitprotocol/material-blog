@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Aditya Agrawal</title>
+	<atom:link href="http://localhost/feed/" rel="self" type="application/rss+xml" />
+	<link>http://localhost</link>
+	<description>Security Researcher. RailFan. Foodie</description>
+	<lastBuildDate>Tue, 21 Jun 2016 05:26:12 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.4.4</generator>
+	<item>
+		<title>PentestBox 2.0 Released</title>
+		<link>http://localhost/pentestbox-2-0-released/</link>
+		<comments>http://localhost/pentestbox-2-0-released/#respond</comments>
+		<pubDate>Wed, 23 Mar 2016 19:30:00 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Pentesting]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=18820</guid>
+		<description><![CDATA[Hi, This is the first major release of PentestBox. Too much refractoring and structural changes are done. Before talking about &#8230;]]></description>
+				<content:encoded><![CDATA[<p>Hi,</p>
+<p>This is the first major release of PentestBox. Too much refractoring and structural changes are done. Before talking about new features and changes i would like to share intent behind creating PentestBox.</p>
+<p>When i started in infosec, i used to run linux pentesting distro in Virtual Machines. After some time i realised that i only require only very small set of tools, so i searched if they are available on windows or not. Some of them were, but still some important tools were missing. I searched about portability of such tools and found that this problem is not new. Many people want to use those tools directly on windows but there are no ways they can do it. If there are ways, they no longer work.<br />
+<img src="https://i.imgur.com/ucvYAHL.png" alt="" title="" /><br />
+<img src="https://i.imgur.com/TM4dl6O.png" alt="" title="" /><br />
+<img src="https://i.imgur.com/Oaiq7d8.png" alt="" title="" /></p>
+<p>Above are some of the examples of users requiring support for these awesome projects on windows. So this project was made for fellow users like me who want to use pentesting tools directly on windows operating system.</p>
+<p>I would like to thank everyone for their awesome feedback i received from the day i released this project. Also there is always demand for more tools in PentestBox. Keeping that in mind, i have included some features(toolsmanager) in this version. You can read about them below. Next major thing i need to do is to provide support for Wireless Pentesting Tools, there are too many problems, didn&#8217;t want to discuss it here, let me know if you have suggestion in this regard.</p>
+<p>I would also request PentestBox users to share about it. Also if you want to demonstrate PentestBox at some local meetup or conference, let me know at aditya@manifestsecurity.com, i can provide you slides/documentation and other resources if required.</p>
+<p>Scroll down to end of the post to view demo video of PentestBox v2.0 .</p>
+<p>Below are list of some of the changes:-</p>
+<ul>
+<li>
+<p>Currently PentestBox contain efficient and popular security tools in their respective categories, but some users require more tools and including every tool is not possible because of size constraint. Keeping that in mind, i have included a <strong>toolsmanager</strong> in this version which can install/update/remove tools which are included by default in PentestBox. Check about this feature <a href="https://docs.pentestbox.com/#tools-manager">here</a>.</p>
+</li>
+<li>
+<p>Consider a environment where you want to use PentestBox on many computers like office, lab, etc. Instead of installing PentestBox on each and every computer, you can just install that on one computer and share that folder as a drive to other computers on the same network. Check about this feature <a href="https://docs.pentestbox.com/#map-pentestbox-folder-as-network-drive">here</a>.</p>
+</li>
+<li>
+<p>Earlier we faced an issue with wpscan when because of some recent commit, it stopped working on windows operating systems. I shared about that issue on <a href="https://www.facebook.com/pentestbox/posts/989758797747476">Facebook</a> and <a href="https://twitter.com/pentestbox/status/663249934758445056">Twitter</a>. To prevent such things happening in future, i forked  tools which can have problem in future and now will be served through PentestBox github <a href="https://github.com/pentestbox">repo</a>. So, now every saturday new commits will be checked and then only will be pushed.<br />
+<strong>Tl;dr :</strong> No more tools brekage.</p>
+</li>
+<li>
+<p>From this version PentestBox supports 32 bits PC as well, also the tools inside it. Most users aren&#8217;t concerened about above thing, as most of the people uses 64 bit systems. But this was introduced to make low-end systems in to a Pentesting Environment. Just to give an idea, i have tested PentestBox on <a href="http://www.amazon.com/ASUS-X205TA-11-6-Laptop-Intel/dp/B00SGS7ZII">this $200 machine</a>, and it ran on it very smoothly.</p>
+</li>
+<li>
+<p>Tools Added &#8211; dotdotpwn, joomscan, sublist3r, CMSmap, droopescan, CrackMapExec, Androbugs Framework, ByteCodeViewer, Windump &#8211; windows version of tcpdump</p>
+</li>
+<li>
+<p>Structural changes</p>
+<ul>
+<li>Python 2.7.11(32 bit) added.</li>
+<li>Clink 0.4.7(32 and 64 bit added, automatically detect)</li>
+<li>Ruby 2.1.8-i386-minigw2 added.</li>
+<li>Strawberry perl-5.22.1.3-32 bit added.</li>
+<li>curl 7.34.0-win32 added (newest version had some issue with ruby).</li>
+</ul>
+</li>
+</ul>
+<p><iframe width="853" height="480" src="https://www.youtube.com/embed/0-FV3_Jafws" frameborder="0" allowfullscreen></iframe></p>
+<p>Thanks!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/pentestbox-2-0-released/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>IoT Security Wiki Released</title>
+		<link>http://localhost/iot-security-wiki-released/</link>
+		<comments>http://localhost/iot-security-wiki-released/#respond</comments>
+		<pubDate>Thu, 03 Mar 2016 18:05:01 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=18795</guid>
+		<description><![CDATA[Hi ! From last 2-3 months i have been working on some projects related to IoT Security. As there are &#8230;]]></description>
+				<content:encoded><![CDATA[<p>Hi !</p>
+<p>From last 2-3 months i have been working on some projects related to IoT Security. As there are very less people in IoT Security, it was very difficult to find any resources and learn about it. Nearly one year ago i released <a href="https://mobilesecuritywiki.com">MobileSecurityWiki</a> and i got some awesome feedbacks about it from the community members. So i thought to release the same for IoT, but doing that is very difficult task, because there are too many things in IoT and there are different kind of IoT devices. Current version mostly contains research/presentations/talks/studies. </p>
+<p>I look forward for your additions/suggestion/feedback for this wiki. Please visit the <a href="https://iotsecuritywiki.com">wiki</a> to know procedure to suggest additions. I think this would be very helpful for the developers and security researchers in the long run. </p>
+<p>Thanks</p>
+<p>Aditya Agrawal</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/iot-security-wiki-released/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Appie Version 3 Released</title>
+		<link>http://localhost/appie-version-3-released/</link>
+		<comments>http://localhost/appie-version-3-released/#respond</comments>
+		<pubDate>Tue, 23 Feb 2016 16:46:57 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16463</guid>
+		<description><![CDATA[So it has been more than a year since Appie was launched, and i have been receiving awesome response from &#8230;]]></description>
+				<content:encoded><![CDATA[<p>So it has been more than a year since <a href="https://manifestsecurity.com/appie/">Appie</a> was launched, and i have been receiving awesome response from it&#8217;s users since then. Thanks a ton for that <img src="http://localhost/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Below are some of changes which have been made from previous version:- </p>
+<ul>
+<li>It now have Python 32 bit so that even 32 bit systems have no problem with usage.</li>
+<li>Also updated the Conemu framework which i use as a base terminal.</li>
+<li>Although all the tools are now updated in Appie, but in this version i have introduced a simple update script through which you can update all the tools inside Appie without downloading new version of Appie. So at the end this saves your lot of time. </li>
+<li>It is lot more faster now, if you are an existing user of Appie than you will notice that.</li>
+<li>Some new tools have been included in this version:-
+<ul>
+<li>I have replaced Sublime Text with open-source  <a href="https://atom.io/">Atom</a> text editor.</li>
+<li><a href="http://bytecodeviewer.com/">ByteCodeViewer</a></li>
+<li><a href="https://github.com/skylot/jadx">jadx</a></li>
+<li><a href="http://sqlitebrowser.org/">SQLite Database Browser</a></li>
+<li><a href="https://github.com/sqlmapproject/sqlmap">SQLmap</a></li>
+<li>Included Mozilla Firefox with <a href="https://addons.mozilla.org/en-US/firefox/collections/pentestbox/pentestbox-addons-collection/">some security addons</a>.</li>
+<li><a href="https://github.com/AndroBugs/AndroBugs_Framework">AndroBugs Framework</a></li>
+<li>And finally Appie has a logo.<br />
+<img src="https://i.imgur.com/3B3uKjA.png" alt="" title="" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="usingupdatefeature">Using Update Feature</h3>
+<p>Using update feature is very simple, currently there are only two options in update script.</p>
+<p>Type <strong>update</strong> in Appie terminal.</p>
+<p><img src="https://i.imgur.com/aGWEC8j.png" alt="" title="" /></p>
+<p>With <strong>update tools</strong>, all tools will get updated inside Appie and with <strong>update config</strong>, appie configuration files will get updated.</p>
+<p>Now you can get news and updates about Appie and android security on <a href="https://facebook.com/projectappie/">Facebook</a> and <a href="https://twitter.com/projectappie">Twitter</a> page. Email subscription has not been provide because of email privacy issue.</p>
+<p>You can download new version of Appie from links given below.</p>
+<p><a href="http://sourceforge.net/projects/appiefiles/files/AppieV3.1.msi/download"><img src="https://a.fsdn.com/con/app/sf-download-button" alt="Download Appie" title="" /></a></p>
+<p><a href="https://manifestsecurity.com/AppieV3.1.torrent"><img src="https://i.imgur.com/2CZtyHn.png" alt="" title="" /></a></p>
+<p>I have also made a short introduction video of Appie, you can watch here.</p>
+<p><iframe width="853" height="480" src="https://www.youtube.com/embed/klF-i0HVuQ0" frameborder="0" allowfullscreen></iframe></p>
+<p>Thanks</p>
+<p>Aditya Agrawal</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/appie-version-3-released/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 26 &#8211; Intercept Traffic on Android version after 4.2.2</title>
+		<link>http://localhost/android-application-security-part-26/</link>
+		<comments>http://localhost/android-application-security-part-26/#respond</comments>
+		<pubDate>Wed, 14 Oct 2015 15:02:50 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16210</guid>
+		<description><![CDATA[In this post i will demonstrate to intercept traffic after Android 4.2.2. Most of the android security professionals uses Cydia &#8230;]]></description>
+				<content:encoded><![CDATA[<p>In this post i will demonstrate to intercept traffic after Android 4.2.2. Most of the android security professionals uses <a href="http://www.cydiasubstrate.com/">Cydia Substrate</a> and <a href="https://github.com/iSECPartners/Android-SSL-TrustKiller">Android-SSL-TrustKiller</a> for intercepting traffic but as <a href="http://www.cydiasubstrate.com/">Cydia Substrate</a> is not supported after Android 4.2.2 , it may be a problem to some users who want to pentest app which only works on Kitkat(Android 4.4.4) or Lollipop(Android 5.0.0) .</p>
+<p>So i will be using a <a href="http://repo.xposed.info/module/de.robv.android.xposed.installer">Xposed Framework</a> and <a href="https://github.com/Fuzion24/JustTrustMe">JustTrustMe</a> which is an xposed framework module.</p>
+<ul>
+<li>
+<p>First download Xposed Installer apk from <a href="http://repo.xposed.info/module/de.robv.android.xposed.installer">here</a> and install on your device.</p>
+</li>
+<li>
+<p>Now download JustTrustMe apk from <a href="https://github.com/Fuzion24/JustTrustMe/blob/master/bin/JustTrustMe.apk?raw=true">here</a> and install it on your device.</p>
+</li>
+<li>
+<p>Then open up your Xposed Installer App from your device and open modules in it. Then click on the checkbox to activate that module.<br />
+<img src="https://i.imgur.com/8XHS4kB.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now go to the framework section and choose <strong>Soft Reboot</strong> to reboot and activate that module.<br />
+<img src="https://i.imgur.com/GBaBMag.png" alt="" title="" /></p>
+</li>
+</ul>
+<p>Now if you would try to intercept using your Burp Proxy then you would be able to see the traffic of every apps.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-26/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Install Google Play Store in Genymotion</title>
+		<link>http://localhost/android-application-security-part-25/</link>
+		<comments>http://localhost/android-application-security-part-25/#respond</comments>
+		<pubDate>Wed, 14 Oct 2015 03:02:00 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16042</guid>
+		<description><![CDATA[In this post i will demonstrate how you can install Google Play Store in a Genymotion Device. Switch ON your &#8230;]]></description>
+				<content:encoded><![CDATA[<p>In this post i will demonstrate how you can install <strong>Google Play Store</strong> in a Genymotion Device.</p>
+<ul>
+<li>Switch ON your Genymotion Device. </li>
+<li>Download Google Apps from <a href="http://wiki.cyanogenmod.org/w/Google_Apps#gappsCM11">Cynogenmod</a> </li>
+<li>Drag and Drop the downloaded zip file to Genymotion Device. It will ask for confirmation,confirm it.Then it will start showing some error&#8217;s, ignore for the time being and follow the next steps without opening any installed apps now. </li>
+<li>Go to Settings<br />
+<a href="http://imgur.com/OBvbKvG"><img src="https://i.imgur.com/OBvbKvG.png" alt="" title="source: imgur.com" /></a> </li>
+<li>Tap on Add Account </li>
+<li>Tap on Google<br />
+<a href="http://imgur.com/W5DNEsy"><img src="https://i.imgur.com/W5DNEsy.png" alt="" title="source: imgur.com" /></a></li>
+<li>If you have an existing account then click on existing otherwise you can make a new account.<br />
+<img src="https://i.imgur.com/D8dy0dV.png" alt="" title="" /></li>
+<li>Signin your google account and then allow google update. You will see now your Google account has been linked to this device. Now you easily operate Google Play Store and install other apps through it.<br />
+<a href="http://imgur.com/jdtl4wX"><img src="https://i.imgur.com/jdtl4wX.png" alt="" title="source: imgur.com" /></a></li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-25/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Configuring your Device for Pentesting</title>
+		<link>http://localhost/android-application-security-part-24/</link>
+		<comments>http://localhost/android-application-security-part-24/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 22:01:34 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16040</guid>
+		<description><![CDATA[In the First Part of the series i have shown how we can configure a virtual device for pentesting. In &#8230;]]></description>
+				<content:encoded><![CDATA[<p>In the <a href="https://manifestsecurity.com/android-application-security-part-1">First Part</a> of the series i have shown how we can configure a virtual device for pentesting. In this post i will demonstrate how you can actually configure your real device(phone/tablet/smart watch) for pentesting.</p>
+<ul>
+<li>
+<p>Tap on the build number until it says &#8221; You are now a developer&#8221;<br />
+<img src="https://i.imgur.com/Fhu598E.jpg" alt="" title="" /></p>
+</li>
+<li>
+<p>Go to the Developer Options.<br />
+<img src="https://i.imgur.com/isjuOIR.jpg" alt="" title="" /></p>
+</li>
+<li>
+<p>Tap on <strong>USB Debugging</strong> .<br />
+<img src="https://i.imgur.com/Oencx7m.jpg" alt="" title="" /></p>
+</li>
+<li>
+<p>Connect your Phone with the USB cable and you will see this notification on your Screen .</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/KC4rFQv.jpg" alt="" title="" /></p>
+<ul>
+<li>Now you can also install Drozer agent on your phone or can also get a shell. Note you will be prompted on your phone while connecting using adb.</li>
+</ul>
+<p><img src="https://i.imgur.com/yACCB0H.jpg" alt="" title="" /><br />
+<img src="https://i.imgur.com/cdFkbFE.jpg" alt="" title="" /></p>
+<p><img src="https://i.imgur.com/WRgWm4g.png" alt="" title="" /></p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-24/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Spoofing your location in Play Store</title>
+		<link>http://localhost/android-application-security-part-23/</link>
+		<comments>http://localhost/android-application-security-part-23/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:56:14 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16031</guid>
+		<description><![CDATA[Many a times you have seen that application which you want to assess is only allowed in selected countries, so &#8230;]]></description>
+				<content:encoded><![CDATA[<p>Many a times you have seen that application which you want to assess is only allowed in selected countries, so in that case you won&#8217;t be able to install that application on you android device. But if you can spoof your location to that country in which the application is allowed then you can get access to that application. Below is the procedure of the same.</p>
+<ul>
+<li>
+<p>First install <strong>Hotspot Shield Free VPN Proxy</strong> from Google Play Store.<br />
+<img src="https://i.imgur.com/0XrmuKY.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now connect using it and choose your required country.<br />
+<img src="https://i.imgur.com/Z0WHrZX.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now go to <strong>Settings</strong> >> <strong>Apps</strong> >> <strong>Google Play Store</strong> and then tap on <strong>Force Stop</strong> and then on <strong>Clear Data</strong>.<br />
+<img src="https://i.imgur.com/sjFrr67.png" alt="" title="" /></p>
+</li>
+<li>Open up <strong>Google Play Store</strong> and now you will be able to search and install the application which is only available in that country.<br />
+<img src="https://i.imgur.com/zfdhCBI.png" alt="" title="" /></li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-23/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 22 &#8211; Developer Backdoor</title>
+		<link>http://localhost/android-application-security-part-22/</link>
+		<comments>http://localhost/android-application-security-part-22/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:55:57 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16029</guid>
+		<description><![CDATA[There are sometimes when developer put a backdoor to a particular application. He/She puts that because he doesn&#8217;t want somebody &#8230;]]></description>
+				<content:encoded><![CDATA[<p>There are sometimes when developer put a backdoor to a particular application. He/She puts that because he doesn&#8217;t want somebody else to access that sensitive piece of Information and sometimes that backdoor is for debugging purposes.</p>
+<p>If you would go through <strong>Login Activity</strong> then you will find that there is a Backdoor. There is a Username-Password combination which turns on some Admin Options.</p>
+<p><img src="https://i.imgur.com/qkdjy10.png" alt="" title="" /></p>
+<p>From the above image we can figure out that </p>
+<p>Username: <strong>customerservice</strong><br />
+Password: <strong>Acc0uNTM@n@g3mEnT</strong></p>
+<p>If you would login with the credentials given above then you will see a similar Interface given below.</p>
+<p><img src="https://i.imgur.com/ejvgLk1.png" alt="" title="" /></p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-22/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 21 &#8211; Exploiting Debuggable Applications</title>
+		<link>http://localhost/android-application-security-part-21/</link>
+		<comments>http://localhost/android-application-security-part-21/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:55:21 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16027</guid>
+		<description><![CDATA[Consider a situation when your mobile is stolen and it is not rooted. If an application is marked as debuggable &#8230;]]></description>
+				<content:encoded><![CDATA[<p>Consider a situation when your mobile is stolen and it is not rooted. If an application is marked as <strong>debuggable</strong> then any attacker can access the application data by assuming the privileges of that application or can run arbitary code under that application permission. In the case of non-debuggable application, attacker would first need to root the device to extract any data. </p>
+<h3 id="howtocheckfordebuggableflag">How to check for debuggable flag ?</h3>
+<p>I will use Sieve to demonstrate this issue.</p>
+<ul>
+<li>
+<p>Decompile .apk file using apktool then open up the AndroidManifest.xml file.</p>
+</li>
+<li>
+<p>Look for <strong>android:debuggable</strong> value in the AndroidManifest.xml file.<br />
+<img src="https://i.imgur.com/Tq59rLD.png" alt="" title="" /></p>
+</li>
+</ul>
+<p>Now to see which application are connected to debugging socker(@jdwp-control), type <strong>adb jdwp</strong> in the console. It will list the PIDs(Process Identifiers) of the applications which can be debugged. </p>
+<p>In order to figure out which PID belong to our application, type <strong>adb jdwp</strong> before running the application you wanted to test.<br />
+    <img src="https://i.imgur.com/cdJh9jt.png" alt="" title="" /></p>
+<p>Now again type <strong>adb jdwp</strong> after opening the application and you will see that there are PIDs added to last result, so among those PIDs there is one PID which belong to our application. In my case there is only one PID <strong>3894</strong> which is added .<br />
+    <img src="https://i.imgur.com/sSa9OMm.png" alt="" title="" /></p>
+<p>Now check whether or not this PID belong to this application, in case you have got more than one PID. It should output name of the application at the end of result like <strong>com.mwr.example.sieve</strong> in my case.<br />
+    <img src="https://i.imgur.com/NhyE1aT.png" alt="" title="" /></p>
+<p>Now to simply demonstrate what an debuggable application can do, i will extract data from application private directory.</p>
+<p>Now with the help of run-as binary we can execute commands as <strong>com.mwr.example.sieve</strong> application.<br />
+<img src="https://i.imgur.com/BEMbiID.png" alt="" title="" /></p>
+<p><strong>Note: Above is the shell access of my personal phone which is not rooted.</strong></p>
+<p>Now you can extract the data or run an arbitary code using application permission like shown below.<br />
+<img src="https://i.imgur.com/1oGGsV5.png" alt="" title="" /></p>
+<p>But if you would try to access any other directory using this method, it won&#8217;t allow you because <strong>com.mwr.example.sieve</strong> doesn&#8217;t have access to it.<br />
+<img src="https://i.imgur.com/9EkidSV.png" alt="" title="" /></p>
+<h3 id="howtofix">How To Fix</h3>
+<p>Fix is very simple, just set <strong>android:debuggable</strong> flag to <strong>false</strong> in AndroidManifest.xml of the application.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-21/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 20 &#8211; Client Side Injections</title>
+		<link>http://localhost/android-application-security-part-20/</link>
+		<comments>http://localhost/android-application-security-part-20/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:55:07 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16025</guid>
+		<description><![CDATA[Client Side Injections holds 7th position in OWASP Mobile Top 10 Javascript Injection: The mobile browser is vulnerable to javascript &#8230;]]></description>
+				<content:encoded><![CDATA[<p>Client Side Injections holds <strong>7th</strong> position in <a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M7">OWASP Mobile Top 10</a></p>
+<ul>
+<li>
+<p><strong>Javascript Injection:</strong> The mobile browser is vulnerable<br />
+to javascript injection as well. Android default <strong>Browser</strong> has also access<br />
+to mobile applications cookies. If you have your Google account attached to device<br />
+then you can use your Google account in Android Browser without authentication.</p>
+</li>
+<li>
+<p>Several application interfaces or language functions can accept data and can be fuzzed to make applications crash. While most of these flaws do not lead to overflows because of the phone’s platforms being managed code, there have been several that have been used as a “userland” exploit in an exploit chain aimed at rooting or jailbreaking devices.</p>
+</li>
+<li>
+<p>Mobile malware or other malicious apps may perform a binary attack against the presentation layer (HTML, JavaScript, Cascading Style Sheets ) or the actual binary of the mobile app&#8217;s executable. These code injections are executed either by the mobile app&#8217;s framework or the binary itself at run-time.</p>
+</li>
+</ul>
+<h3 id="howtofix">How To Fix</h3>
+<ul>
+<li><strong>SQL Injection:</strong> When dealing with dynamic queries or Content-Providers ensure you are using parameterized queries.</li>
+<li><strong>JavaScript Injection (XSS):</strong> Verify that JavaScript and Plugin support is disabled for any WebViews (usually the default).</li>
+<li><strong>Local File Inclusion:</strong> Verify that File System Access is disabled for any WebViews (webview.getSettings().setAllowFileAccess(false);).</li>
+<li><strong>Intent Injection/Fuzzing:</strong> Verify actions and data are validated via an Intent Filter for all Activities.</li>
+</ul>
+<h4 id="reference">Reference</h4>
+<p><a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M7">OWASP Top 10 2014 &#8211; M7</a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-20/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

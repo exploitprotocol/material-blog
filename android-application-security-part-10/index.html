@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://localhost/xmlrpc.php">
+
+<title>Android Application Security Part 10 &#8211; Insufficient Transport Layer Protection &#8211; Aditya Agrawal</title>
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Feed" href="http://localhost/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Comments Feed" href="http://localhost/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Android Application Security Part 10 &#8211; Insufficient Transport Layer Protection Comments Feed" href="http://localhost/android-application-security-part-10/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/localhost\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.4"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-awesome-css'  href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' type='text/css' media='screen' />
+<link rel='stylesheet' id='materialist-google-fonts-css'  href='//fonts.googleapis.com/css?family=Roboto%3A400italic%2C700italic%2C300%2C700%2C300italic%2C400&#038;ver=4.4.4' type='text/css' media='all' />
+<link rel='stylesheet' id='materialist-style-css'  href='http://localhost/wp-content/themes/materialist/style.css?ver=4.4.4' type='text/css' media='all' />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v5.5 - Universal enabled - https://www.monsterinsights.com/ -->
+<script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-58669007-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('set', 'anonymizeIp', true);
+	__gaTracker('send','pageview');
+
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/materialist.js?ver=20150121'></script>
+<link rel='https://api.w.org/' href='http://localhost/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Android Application Security Part 9 – Binary Protections' href='http://localhost/android-application-security-part-9/' />
+<link rel='next' title='Android Application Security Part 11 &#8211; Unintended Data Leakage' href='http://localhost/android-application-security-part-11/' />
+<meta name="generator" content="WordPress 4.4.4" />
+<link rel="canonical" href="http://localhost/android-application-security-part-10/" />
+<link rel='shortlink' href='http://localhost/?p=15983' />
+<link rel="alternate" type="application/json+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fandroid-application-security-part-10%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fandroid-application-security-part-10%2F&#038;format=xml" />
+
+<style>
+.scroll-back-to-top-wrapper {
+    position: fixed;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	text-align: center;
+	z-index: 99999999;
+    background-color: #777777;
+	color: #eeeeee;
+	width: 50px;
+	height: 48px;
+	line-height: 48px;
+	right: 30px;
+	bottom: 30px;
+	padding-top: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.scroll-back-to-top-wrapper:hover {
+	background-color: #888888;
+  color: #eeeeee;
+}
+.scroll-back-to-top-wrapper.show {
+    visibility:visible;
+    cursor:pointer;
+	opacity: 1.0;
+}
+.scroll-back-to-top-wrapper i.fa {
+	line-height: inherit;
+}
+.scroll-back-to-top-wrapper .fa-lg {
+	vertical-align: 0;
+}
+</style></head>
+
+<body class="single single-post postid-15983 single-format-standard">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<nav id="top-navigation">
+		<a href="#drawer" data-target-id="drawer" class="genericon genericon-menu toggle-button"><span class="label">Navigation</span></a>
+		<h3 class="site-title-nav"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h3>
+	</nav>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<h1 class="site-title"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h1>
+			<h2 class="site-description">Security Researcher. RailFan. Foodie</h2>
+		</div><!-- .site-branding -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<div class="hentry-separator">
+	<span class="posted-on"><a href="http://localhost/android-application-security-part-10/" rel="bookmark"><time class="entry-date published" datetime="2015-10-13T21:38:24+00:00">Oct 13th 2015</time><time class="updated" datetime="2015-10-14T15:15:23+00:00">October 14, 2015</time></a></span></div><!-- .entry-meta -->
+
+<article id="post-15983" class="post-15983 post type-post status-publish format-standard hentry category-android category-pentesting category-security">
+	
+	<header class="entry-header">
+		<h1 class="entry-title">Android Application Security Part 10 &#8211; Insufficient Transport Layer Protection</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>Insufficient Transport Layer Protection holds <strong>3rd</strong> position at <a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M3" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://www.owasp.org/index.php/Mobile_Top_10_2014-M3', 'OWASP Mobile Top 10');">OWASP Mobile Top 10</a>.</p>
+<p>Nearly all Android Applications transmit data between Client and Server. Most Application prefer to send data over Secure Channel to prevent interception and leaking to an malicious user. In this post i will try to highlight some issues regarding Insecure Transmission of data and ways to exploit those issue and also ways to fix them as well.</p>
+<p>Common Scenarios</p>
+<ul>
+<li>
+<p><strong>Lack of Certificate Inspection:</strong> Android Application fails to verify the identity of the certificate presented to it. Most of the application ignore the warnings and accept any self-signed certificate presented. Some Application instead pass the traffic through an HTTP connection.</p>
+</li>
+<li>
+<p><strong>Weak Handshake Negotiation:</strong> Application and server perform an SSL/TLS handshake but use an insecure cipher suite which is vulnerable to MITM attacks. So any attacker can easily decrypt that connection.</p>
+</li>
+<li>
+<p><strong>Privacy Information Leakage:</strong> Most of the times it happens that Applications do authentication through a secure channel but rest all connection through non-secure channel. That doesn’t add to security of application because rest sensitive data like session cookie or user data can be intercepted by an malicious user.</p>
+</li>
+</ul>
+<p><strong>Who are threat agents in this case ?</strong></p>
+<ul>
+<li>Users local to your network (compromised or monitored wifi)</li>
+<li>Carrier or network devices (routers, cell towers, proxy’s, etc)</li>
+<li>Malware pre-existing on your phone</li>
+<li>Hackers trying to attack you web services</li>
+</ul>
+<p>For our demonstration purpose we will use HerdFinacial App from OWASP-Goatdroid Project.</p>
+<ul>
+<li>
+<p>First set the destination Info in HerdFinancial App.<br />
+<img src="https://i.imgur.com/Lhm0H5G.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now we to set a proxy in our android device/emulator to intercept the traffic between application and the server. If you are using Genymotion then go to Wifi under Settings. Tap WiredSSID for a While and then tap on Modify Network.<br />
+<img src="https://i.imgur.com/ke7mCGZ.png" alt="" title="" /></p>
+</li>
+<li>
+<p>In proxy settings, choose manual then enter IP Address and port on which Burp Suite or OWASP Zap is listening.<br />
+<img src="https://i.imgur.com/h0ae1NP.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now device traffic can be intercepted by Burp Suite or OWASP Zap.<br />
+<img src="https://i.imgur.com/uoMwqJl.png" alt="" title="" /><br />
+<img src="https://i.imgur.com/7zifG08.png" alt="" title="" /></p>
+</li>
+</ul>
+<p>But if would now try open other apps like Google Play Store or Facebook App then you will not be able to see any of the traffic there. So might be wondering why is that happening. There are some possible reasons for that which are listed below :</p>
+<ul>
+<li>
+<p>Burp Generate a self-signed certificate for every host(like google.com), some application do not trasmit any data through it. Like in the above example Android Application trasmitted the data to a self signed certificate which lead to interception of data , this is worst case scenario where an android application accepts all certificates presented to it.</p>
+</li>
+<li>
+<p>To prevent above scenario, some application uses Certificate Pinning. </p>
+<p><strong>What is certificate Pinning?</strong></p>
+<p>By default, when making an SSL connection, the client(android app) checks that the server’s certificate has a verifiable chain of trust back to a trusted (root) certificate and matches the requested hostname. This lead to problem of <strong>Man in the Middle Attacks(MITM)</strong>.<br />
+In certificate Pinnning, an Android Application itself contains the certificate of server and only transmit data if the same certificate is presented.</p>
+</li>
+<li>
+<p>There are some rare application which uses custom protocols instead of HTTP/HTTPS to transmit data. Either because of requirement or because to prevent interception through common techniques.</p>
+</li>
+<li>
+<p>There are some ultra rare application’s which also encrpyts data before placing data in HTTP Request Body, which ultimately then passed through an SSL connection to the server.</p>
+</li>
+</ul>
+<p>Facebook and other security conscious applications  applies certificate Pinning and encryption of HTTP(s) Request body as well.</p>
+<p>Below we will try to understand how to actually intercept traffic when those above limitations are there.</p>
+<p><strong>First Scenario</strong></p>
+<ul>
+<li>
+<p>Security in Settings have an option to view to all Trusted Certificates installed on the device.</p>
+</li>
+<li>
+<p>In order to Bypass first scenario where application only trust certificates from list of Trusted CA’s. We need to add Burp Certificate in Trusted CA Certificates.</p>
+</li>
+<li>
+<p>Go to the Browser and type http://burp . It will open a webpage, choose CA Certificate from there. It will download certificate for you will appear in notification.<br />
+<img src="https://i.imgur.com/BrVvjNd.png" alt="" title="" /><br />
+<img src="https://i.imgur.com/ixyJY22.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now open File Manager Application and then open up Download folder within it. You will find the file, click on it and enter Burp when asked for name.<br />
+<img src="https://i.imgur.com/zRPpI6I.png" alt="" title="" /><br />
+<img src="https://i.imgur.com/toySWlN.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now if you would go to list og Trusted CA Certificates in Settings–>Security–>Trusted Credentials. You Will find the PortsWigger CA Certificate is installed.<br />
+<img src="https://i.imgur.com/JeKOFwf.png" alt="" title="" /></p>
+</li>
+</ul>
+<p>So finally after all this we have finally installed a trusted CA certificate. Now this will help in intercepting in most of the applications.</p>
+<p><strong>Second Scenario</strong></p>
+<p>There are two bypass Certificate Pinning, first by changing the source code and other by Android-SSL-Trust-Killer. Changing source code is always a tedious Job, because every Application has it&#8217;s own implementation of Encryption.</p>
+<p>We would instead take a simpler path for now, will install <a href="https://github.com/iSECPartners/Android-SSL-TrustKiller" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/iSECPartners/Android-SSL-TrustKiller', 'Android SSL-Trust-Killer');">Android SSL-Trust-Killer</a> application in the android device which will bypass SSL Certificate Pinning for nearly all application.</p>
+<ul>
+<li>
+<p>Make Sure <a href="http://www.cydiasubstrate.com/download/com.saurik.substrate.apk" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://www.cydiasubstrate.com/download/com.saurik.substrate.apk', 'Cydia Substrate');">Cydia Substrate</a> is installed on the device/emulator.</p>
+</li>
+<li>
+<p>Download Android SSL-Trust-killer from <a href="https://github.com/iSECPartners/Android-SSL-TrustKiller/releases/download/v1/Android-SSL-TrustKiller.apk" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/iSECPartners/Android-SSL-TrustKiller/releases/download/v1/Android-SSL-TrustKiller.apk', 'here');">here</a>.</p>
+</li>
+<li>
+<p>Install using <strong>adb install Android-SSL-TrustKiller.apk</strong></p>
+</li>
+<li>
+<p>Restart the device/emulator using Cydia Substrate.<br />
+Now if you try to intercept then you can see most of traffic from nearly every app in BurpSuite .<br />
+<img src="https://i.imgur.com/CfZFfhS.png" alt="" title="" /></p>
+</li>
+</ul>
+<p>Now if you would see the Request/Response in BurpSuite, you will find some traffic in which Body part of the request is not readible. Like the request given below which was originated from <strong>Android Gmail App</strong>.<br />
+    <img src="https://i.imgur.com/PNmJ54w.png" alt="" title="" /><br />
+So in this actually all the data was encrypted before it was placed in the Body of Request. In such kind of situation, we cannot do anything because this layer of encryption cannot be broken.</p>
+<h3 id="howtofix">How To Fix</h3>
+<ul>
+<li>Apply SSL/TLS to transport channels that the mobile app will use to transmit sensitive information, session tokens, or other sensitive data to a backend API or web service.</li>
+<li>Use strong, industry standard cipher suites with appropriate key lengths.</li>
+<li>Use certificates signed by a trusted CA provider and consider certificate pinning for security conscious applications.</li>
+<li>Alert users through the UI if the mobile app detects an invalid certificate.</li>
+<li>If possible, apply a separate layer of encryption to any sensitive data before it is given to the SSL channel. In the event that future vulnerabilities are discovered in the SSL implementation, the encrytped data will provide a secondary defense against confidentiality violation.</li>
+<li>Remove all code after the development cycle that may allow the application to accept all certificates such as org.apache.http.conn.ssl.AllowAllHostnameVerifier or SSLSocketFactory.ALLOWALLHOSTNAME_VERIFIER. These are equivalent to trusting all certificates.</li>
+<li>If using a class which extends SSLSocketFactory, make sure checkServerTrusted method is properly implemented so that server certificate is correctly checked.</li>
+</ul>
+<h3 id="reference">Reference</h3>
+<p><a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M3" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://www.owasp.org/index.php/Mobile_Top_10_2014-M3', 'OWASP Mobile Top 10 &#8211; M3');">OWASP Mobile Top 10 &#8211; M3</a></p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<span class="cat-links"><span class="label">Posted in</span> <a href="http://localhost/category/android/" rel="category tag">Android</a>, <a href="http://localhost/category/pentesting/" rel="category tag">Pentesting</a>, <a href="http://localhost/category/security/" rel="category tag">Security</a></span>	</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<div class="nav nav-previous"><a href="http://localhost/android-application-security-part-9/" rel="prev"><span class="label">Previously</span><span class="title">Android Application Security Part 9 – Binary Protections</span></a></div><div class="nav nav-next"><a href="http://localhost/android-application-security-part-11/" rel="next"><span class="label">Read Next</span><span class="title">Android Application Security Part 11 &#8211; Unintended Data Leakage</span></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+			<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//manifestsecurity.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+
+	</div><!-- #content -->
+
+	<div id="drawer">
+		<div class="drawer-content sliding-content" data-direction="left">
+			<div class="drawer-header">
+				<a href="#" data-target-id="drawer" class="genericon genericon-close-alt toggle-button">
+					<span class="label">Close Drawer</span>
+				</a>
+				<h2 class="site-name">Aditya Agrawal</h2>
+			</div><!-- .drawer-header -->
+
+			<div class="drawer-navigation">
+				<div class="menu-primary-navigation-container"><ul id="menu-primary-navigation" class="menu"><li id="menu-item-13955" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13955"><a href="http://localhost/appie/">Appie</a></li>
+<li id="menu-item-12318" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12318"><a href="https://pentestbox.com/" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://pentestbox.com/', 'Pentest Box');">Pentest Box</a></li>
+<li id="menu-item-13954" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13954"><a href="http://localhost/android-application-security/">Android Security Series</a></li>
+<li id="menu-item-18794" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18794"><a href="https://iotsecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://iotsecuritywiki.com', 'IoT Security Wiki');">IoT Security Wiki</a></li>
+<li id="menu-item-8417" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8417"><a href="https://mobilesecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://mobilesecuritywiki.com', 'Mobile Security Wiki');">Mobile Security Wiki</a></li>
+<li id="menu-item-13956" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13956"><a href="http://localhost/blog-series/">Blog Series</a></li>
+<li id="menu-item-12" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12"><a href="http://localhost/aditya/">About</a></li>
+<li id="menu-item-13" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13"><a href="http://twitter.com/exploitprotocol" onclick="__gaTracker('send', 'event', 'outbound-widget', 'http://twitter.com/exploitprotocol', 'Twitter');">Twitter</a></li>
+<li id="menu-item-13957" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13957"><a href="http://localhost/contact/">Contact</a></li>
+</ul></div>			</div><!-- .drawer-navigation -->
+			
+					</div><!-- .drawer-content -->
+
+		<div class="drawer-overlay toggle-button" data-target-id="drawer"></div>
+	</div><!-- #drawer -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+
+			<a href="http://wordpress.org">Proudly powered by WordPress</a>
+			<span class="sep"> | </span>
+			Theme: <a href="http://fikrirasy.id/portfolio/materialist/">Materialist</a>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<div class="scroll-back-to-top-wrapper">
+	<span class="scroll-back-to-top-inner">
+					<i class="fa fa-2x fa-arrow-circle-up"></i>
+			</span>
+</div><script type='text/javascript'>
+/* <![CDATA[ */
+var scrollBackToTop = {"scrollDuration":"500","fadeDuration":"0.5"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://localhost/wp-content/plugins/scroll-back-to-top/assets/js/scroll-back-to-top.js'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/skip-link-focus-fix.js?ver=20130115'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/comment-reply.min.js?ver=4.4.4'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/wp-embed.min.js?ver=4.4.4'></script>
+
+</body>
+</html>

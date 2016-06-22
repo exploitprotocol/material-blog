@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://localhost/xmlrpc.php">
+
+<title>Android Application Security Part 3-Android Application Fundamentals &#8211; Aditya Agrawal</title>
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Feed" href="http://localhost/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Comments Feed" href="http://localhost/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Android Application Security Part 3-Android Application Fundamentals Comments Feed" href="http://localhost/android-application-security-part-3/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/localhost\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.4"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-awesome-css'  href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' type='text/css' media='screen' />
+<link rel='stylesheet' id='materialist-google-fonts-css'  href='//fonts.googleapis.com/css?family=Roboto%3A400italic%2C700italic%2C300%2C700%2C300italic%2C400&#038;ver=4.4.4' type='text/css' media='all' />
+<link rel='stylesheet' id='materialist-style-css'  href='http://localhost/wp-content/themes/materialist/style.css?ver=4.4.4' type='text/css' media='all' />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v5.5 - Universal enabled - https://www.monsterinsights.com/ -->
+<script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-58669007-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('set', 'anonymizeIp', true);
+	__gaTracker('send','pageview');
+
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/materialist.js?ver=20150121'></script>
+<link rel='https://api.w.org/' href='http://localhost/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Android Application Security Part 2-Understanding Android Operating System' href='http://localhost/android-application-security-part-2/' />
+<link rel='next' title='Android Application Security Part 4-Get to know about your Arsenals' href='http://localhost/android-application-security-part-4/' />
+<meta name="generator" content="WordPress 4.4.4" />
+<link rel="canonical" href="http://localhost/android-application-security-part-3/" />
+<link rel='shortlink' href='http://localhost/?p=277' />
+<link rel="alternate" type="application/json+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fandroid-application-security-part-3%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fandroid-application-security-part-3%2F&#038;format=xml" />
+
+<style>
+.scroll-back-to-top-wrapper {
+    position: fixed;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	text-align: center;
+	z-index: 99999999;
+    background-color: #777777;
+	color: #eeeeee;
+	width: 50px;
+	height: 48px;
+	line-height: 48px;
+	right: 30px;
+	bottom: 30px;
+	padding-top: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.scroll-back-to-top-wrapper:hover {
+	background-color: #888888;
+  color: #eeeeee;
+}
+.scroll-back-to-top-wrapper.show {
+    visibility:visible;
+    cursor:pointer;
+	opacity: 1.0;
+}
+.scroll-back-to-top-wrapper i.fa {
+	line-height: inherit;
+}
+.scroll-back-to-top-wrapper .fa-lg {
+	vertical-align: 0;
+}
+</style></head>
+
+<body class="single single-post postid-277 single-format-standard">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<nav id="top-navigation">
+		<a href="#drawer" data-target-id="drawer" class="genericon genericon-menu toggle-button"><span class="label">Navigation</span></a>
+		<h3 class="site-title-nav"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h3>
+	</nav>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<h1 class="site-title"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h1>
+			<h2 class="site-description">Security Researcher. RailFan. Foodie</h2>
+		</div><!-- .site-branding -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<div class="hentry-separator">
+	<span class="posted-on"><a href="http://localhost/android-application-security-part-3/" rel="bookmark"><time class="entry-date published" datetime="2015-01-10T05:08:00+00:00">Jan 10th 2015</time><time class="updated" datetime="2015-10-13T13:27:10+00:00">October 13, 2015</time></a></span></div><!-- .entry-meta -->
+
+<article id="post-277" class="post-277 post type-post status-publish format-standard hentry category-android category-pentesting category-security">
+	
+	<header class="entry-header">
+		<h1 class="entry-title">Android Application Security Part 3-Android Application Fundamentals</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>In the last post i have introduced you to Android Architecture and also explained various layers in that but i haven&#8217;t discussed about the Top most layer i.e &#8220;Applications&#8221;. So in this post i will be talking about Android Application and their functioning keeping security in mind.</p>
+<p>Android apps are written in the Java programming language. The Android SDK tools compile your code—along with any data and resource files—into an APK: an Android package, which is an archive file with an .apk suffix. One APK file contains all the contents of an Android app and is the file that Android-powered devices use to install the app. </p>
+<p><img src="https://i.imgur.com/AS6V70w.png" alt="" title="" /><br />
+An <strong>APK</strong> file is an Archive that usually contains the following directories:</p>
+<ul>
+<li><code>AndroidManifest.xml</code>: The AndroidManifest.xml file is the control file that tells the system what to do with all the top-level components (specifically activities, services, broadcast receivers, and content providers described below) in an application. This also specifies which permissions are required. This file may be in Android binary XML that can be converted into human-readable plaintext XML with tools such as <a href="http://code.google.com/p/android-apktool/" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://code.google.com/p/android-apktool/', 'android-apktool');">android-apktool</a>, or <a href="http://code.google.com/p/androguard/wiki/Usage#Androaxml" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://code.google.com/p/androguard/wiki/Usage#Androaxml', 'Androguard');">Androguard</a> which we will cover in the upcoming post.</li>
+<li>
+<p><code>META-INF</code> directory: </p>
+<ul>
+<li><code>MANIFEST.MF</code>: the Manifest File</li>
+<li><code>CERT.RSA</code>: The certificate of the application.</li>
+<li><code>CERT.SF</code>: The list of resources and SHA-1 digest of the corresponding lines in the MANIFEST.MF file.</li>
+</ul>
+</li>
+<li>
+<p><code>lib</code>: the directory containing the compiled code that is specific to a software layer of a processor, the directory is split into more directories within it:  </p>
+<ul>
+<li><code>armeabi</code>: compiled code for all ARM based processors only</li>
+<li><code>armeabi-v7a</code>: compiled code for all ARMv7 and above based processors only</li>
+<li><code>x86</code>: compiled code for X86</li>
+<li><code>mips</code>: compiled code for MIPS processors only</li>
+</ul>
+</li>
+<li><code>res</code>: the directory containing resources not compiled into resources.arsc (see below).</li>
+<li><code>assets</code>: a directory containing applications assets, which can be retrieved by <code>AssetManager</code>.</li>
+<li><code>classes.dex</code>: The classes compiled in the dex file format understandable by the Dalvik virtual machine</li>
+<li><code>resources.arsc</code>: a file containing precompiled resources, such as binary XML for example.</li>
+</ul>
+<p><strong>App components</strong> are the essential building blocks of an Android app. Each component is a different point through which the system can enter your app. Not all components are actual entry points for the user and some depend on each other, but each one exists as its own entity and plays a specific role—each one is a unique building block that helps define your app&#8217;s overall behavior. You can skip the content given below if you are already familiar with them.There are following four components of app:-</p>
+<p><strong>
+<div id="ContentProvider">Content Provider</div>
+<p></strong></p>
+<ul>
+<li>
+<p>Content Provider component supplies data from one application to others on request.</p>
+</li>
+<li>
+<p>You can store the data in the file system, an SQLite database, on the web, or any other persistent storage location your app can access.</p>
+</li>
+<li>Through the content provider, other apps can query or even modify the data (if the content provider allows it).</li>
+<li>Content Provider is useful in cases when an app want to share data with another app.</li>
+<li>It is much similar like databases and has four methods.
+<ul>
+<li>insert()</li>
+<li>update()</li>
+<li>delete()</li>
+<li>query()</li>
+</ul>
+</li>
+</ul>
+<p><strong>
+<div id="Activity">Activity</div>
+<p></strong></p>
+<p>To be simple an activity represents a single screen with a user interface. For Example,one activity for Login and another activity after login has been successful. It is kind of every new screen I will discuss more about it later when needed.</p>
+<p><strong>
+<div id="Services">Services</div>
+<p></strong> </p>
+<ul>
+<li>A service is a component that runs in the background to perform long-running operations or to perform work for remote processes. </li>
+<li>A service does not provide a user interface,neither component, such as an activity, can start the service and let it run or bind to it in order to interact with it.</li>
+<li>For example, a service might play music in the background while the user is in a different application, or it might fetch data over the network without blocking user interaction with an activity. </li>
+</ul>
+<p><strong>
+<div id="BroadcastReceiver">Broadcast Receiver</div>
+<p></strong></p>
+<ul>
+<li>A broadcast receiver is a component that responds to system-wide broadcast announcements.</li>
+<li>Many broadcasts originate from the system—for example, a broadcast announcing that the screen has turned off, the battery is low, or a picture was captured.</li>
+<li>Apps can also initiate broadcasts—for example, to let other apps know that some data has been downloaded to the device and is available for them to use.</li>
+<li>Although broadcast receivers don&#8217;t display a user interface, they may create a status bar notification to alert the user when a broadcast event occurs. </li>
+<li>More commonly, though, a broadcast receiver is just a &#8220;gateway&#8221; to other components and is intended to do a very minimal amount of work. For instance, it might initiate a service to perform some work based on the event.</li>
+<li>An application may register a receiver for the low battery message for example, and change its behavior based on that information.</li>
+</ul>
+<p><strong>
+<div id="ActivatingComponents">Activating Components</div>
+<p></strong></p>
+<ul>
+<li>Three of the four component types—activities, services, and broadcast receivers—are activated by an asynchronous message called an intent. </li>
+<li>Intents bind individual components to each other at runtime (you can think of them as the messengers that request an action from other components), whether the component belongs to your app or to other.</li>
+<li>In the upcoming post we will be using Drozer which uses Intents to showcase the vulnerabilities.</li>
+</ul>
+<h3 id="applicationsecurityfeaturesbyandroidoperatingsystem">Application Security Features by Android Operating System</h3>
+<p><strong>Android Permission Model</strong></p>
+<p>By default there are some Protected API&#8217;s in the Android Opertating System which can only be accessed by Operating System. The Protected APIs include</p>
+<ul>
+<li>Camera functions</li>
+<li>Location data (GPS)</li>
+<li>Bluetooth functions</li>
+<li>Telephony functions</li>
+<li>SMS/MMS functions</li>
+<li>Network/data connections</li>
+</ul>
+<p>If a particular application needs access to any of the API then it need to mention that permission in AndroidManifest.xml file. You might have observed that when installing a particular application from Google Play Store it ask for several permissions needed,if you don&#8217;t allow then app won&#8217;t install. If that user agrees to grant those permissions then Android operating system gives access to that Protected API.</p>
+<p>Below is the Permission Dialog while installing famous Subway Surfer Game.<br />
+<img src="https://i.imgur.com/ju3T0BA.png" alt="" title="" /></p>
+<p>Did you ever thought ? why this game needs access to your Photos, Browsing History, User Accounts,Bookmarks,etc? Probably not but <strong>you should</strong>.</p>
+<p><strong>Application Signing</strong></p>
+<ul>
+<li>Android requires that all apps be digitally signed with a certificate before they can be installed. Android uses this certificate to identify the author of an app.</li>
+<li>To run application on the device ,it should be signed.When application is installed on to an device then package manager verifies that whether the application has been properly signed with the certificate in the apk file or not.</li>
+<li>Application can be self signed or can be signed through CA.</li>
+<li>Application signing ensures that one application can&#8217;t access any other application except through well-defined IPC and also that it is passed unmodified to the device.</li>
+</ul>
+<p><strong>Application Verification</strong></p>
+<ul>
+<li>Android 4.2 and later support application verification. Users can choose to enable “Verify Apps&#8221; and have applications evaluated by an application verifier prior to installation. </li>
+<li>App verification can alert the user if they try to install an app that might be harmful; if an application is especially bad, it can block installation.</li>
+</ul>
+<p><strong>Android Sandbox</strong></p>
+<p>Once installed on a device, each Android app lives in its own security sandbox: &#8211; The Android operating system is a multi-user Linux system in which each app is a different user.</p>
+<ul>
+<li>
+<p>By default, the system assigns each app a unique Linux user ID (the ID is used only by the system and is unknown to the app). The system sets permissions for all the files in an app so that only the user ID assigned to that app can access them.</p>
+</li>
+<li>
+<p>Each process has its own virtual machine (VM), so an app&#8217;s code runs in isolation from other apps.</p>
+</li>
+<li>
+<p>By default, every app runs in its own Linux process. Android starts the process when any of the app&#8217;s components need to be executed, then shuts down the process when it&#8217;s no longer needed or when the system must recover memory for other apps.</p>
+</li>
+</ul>
+<p>In this way, the Android system implements the principle of least privilege, that is each app by default has access only to the components that it requires to do its work and no more. This creates a very secure environment in which an app cannot access parts of the system for which it is not having permission. As every Android app runs in its own sandbox environment and cannot affect other apps by default but two apps can have same Linux User ID and can also share the same Dalvik VM if they are signed with the same Certificates.</p>
+<p>That’s All For the day! Feel free to comment about any issues you are facing <img src="http://localhost/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /> And if you enjoyed this post,please consider sharing it on facebook and twitter.</p>
+<p><strong>References</strong><br />
+<a href="https://developer.android.com/guide/components/fundamentals.html" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://developer.android.com/guide/components/fundamentals.html', 'Android App Fundamentals');">Android App Fundamentals</a><br />
+<a href="https://source.android.com/devices/tech/security/overview/app-security.html" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://source.android.com/devices/tech/security/overview/app-security.html', 'Android Overview');">Android Overview</a></p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<span class="cat-links"><span class="label">Posted in</span> <a href="http://localhost/category/android/" rel="category tag">Android</a>, <a href="http://localhost/category/pentesting/" rel="category tag">Pentesting</a>, <a href="http://localhost/category/security/" rel="category tag">Security</a></span>	</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<div class="nav nav-previous"><a href="http://localhost/android-application-security-part-2/" rel="prev"><span class="label">Previously</span><span class="title">Android Application Security Part 2-Understanding Android Operating System</span></a></div><div class="nav nav-next"><a href="http://localhost/android-application-security-part-4/" rel="next"><span class="label">Read Next</span><span class="title">Android Application Security Part 4-Get to know about your Arsenals</span></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+			<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//manifestsecurity.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+
+	</div><!-- #content -->
+
+	<div id="drawer">
+		<div class="drawer-content sliding-content" data-direction="left">
+			<div class="drawer-header">
+				<a href="#" data-target-id="drawer" class="genericon genericon-close-alt toggle-button">
+					<span class="label">Close Drawer</span>
+				</a>
+				<h2 class="site-name">Aditya Agrawal</h2>
+			</div><!-- .drawer-header -->
+
+			<div class="drawer-navigation">
+				<div class="menu-primary-navigation-container"><ul id="menu-primary-navigation" class="menu"><li id="menu-item-13955" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13955"><a href="http://localhost/appie/">Appie</a></li>
+<li id="menu-item-12318" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12318"><a href="https://pentestbox.com/" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://pentestbox.com/', 'Pentest Box');">Pentest Box</a></li>
+<li id="menu-item-13954" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13954"><a href="http://localhost/android-application-security/">Android Security Series</a></li>
+<li id="menu-item-18794" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18794"><a href="https://iotsecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://iotsecuritywiki.com', 'IoT Security Wiki');">IoT Security Wiki</a></li>
+<li id="menu-item-8417" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8417"><a href="https://mobilesecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://mobilesecuritywiki.com', 'Mobile Security Wiki');">Mobile Security Wiki</a></li>
+<li id="menu-item-13956" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13956"><a href="http://localhost/blog-series/">Blog Series</a></li>
+<li id="menu-item-12" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12"><a href="http://localhost/aditya/">About</a></li>
+<li id="menu-item-13" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13"><a href="http://twitter.com/exploitprotocol" onclick="__gaTracker('send', 'event', 'outbound-widget', 'http://twitter.com/exploitprotocol', 'Twitter');">Twitter</a></li>
+<li id="menu-item-13957" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13957"><a href="http://localhost/contact/">Contact</a></li>
+</ul></div>			</div><!-- .drawer-navigation -->
+			
+					</div><!-- .drawer-content -->
+
+		<div class="drawer-overlay toggle-button" data-target-id="drawer"></div>
+	</div><!-- #drawer -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+
+			<a href="http://wordpress.org">Proudly powered by WordPress</a>
+			<span class="sep"> | </span>
+			Theme: <a href="http://fikrirasy.id/portfolio/materialist/">Materialist</a>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<div class="scroll-back-to-top-wrapper">
+	<span class="scroll-back-to-top-inner">
+					<i class="fa fa-2x fa-arrow-circle-up"></i>
+			</span>
+</div><script type='text/javascript'>
+/* <![CDATA[ */
+var scrollBackToTop = {"scrollDuration":"500","fadeDuration":"0.5"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://localhost/wp-content/plugins/scroll-back-to-top/assets/js/scroll-back-to-top.js'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/skip-link-focus-fix.js?ver=20130115'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/comment-reply.min.js?ver=4.4.4'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/wp-embed.min.js?ver=4.4.4'></script>
+
+</body>
+</html>

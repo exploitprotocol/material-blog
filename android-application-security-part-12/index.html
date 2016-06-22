@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://localhost/xmlrpc.php">
+
+<title>Android Application Security Part 12 &#8211; Poor Authentication And Authorization &#8211; Aditya Agrawal</title>
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Feed" href="http://localhost/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Comments Feed" href="http://localhost/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Android Application Security Part 12 &#8211; Poor Authentication And Authorization Comments Feed" href="http://localhost/android-application-security-part-12/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/localhost\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.4"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-awesome-css'  href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' type='text/css' media='screen' />
+<link rel='stylesheet' id='materialist-google-fonts-css'  href='//fonts.googleapis.com/css?family=Roboto%3A400italic%2C700italic%2C300%2C700%2C300italic%2C400&#038;ver=4.4.4' type='text/css' media='all' />
+<link rel='stylesheet' id='materialist-style-css'  href='http://localhost/wp-content/themes/materialist/style.css?ver=4.4.4' type='text/css' media='all' />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v5.5 - Universal enabled - https://www.monsterinsights.com/ -->
+<script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-58669007-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('set', 'anonymizeIp', true);
+	__gaTracker('send','pageview');
+
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/materialist.js?ver=20150121'></script>
+<link rel='https://api.w.org/' href='http://localhost/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Android Application Security Part 11 &#8211; Unintended Data Leakage' href='http://localhost/android-application-security-part-11/' />
+<link rel='next' title='Android Application Security Part 13 &#8211; Broken Cryptography' href='http://localhost/android-application-security-part-13/' />
+<meta name="generator" content="WordPress 4.4.4" />
+<link rel="canonical" href="http://localhost/android-application-security-part-12/" />
+<link rel='shortlink' href='http://localhost/?p=16001' />
+<link rel="alternate" type="application/json+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fandroid-application-security-part-12%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fandroid-application-security-part-12%2F&#038;format=xml" />
+
+<style>
+.scroll-back-to-top-wrapper {
+    position: fixed;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	text-align: center;
+	z-index: 99999999;
+    background-color: #777777;
+	color: #eeeeee;
+	width: 50px;
+	height: 48px;
+	line-height: 48px;
+	right: 30px;
+	bottom: 30px;
+	padding-top: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.scroll-back-to-top-wrapper:hover {
+	background-color: #888888;
+  color: #eeeeee;
+}
+.scroll-back-to-top-wrapper.show {
+    visibility:visible;
+    cursor:pointer;
+	opacity: 1.0;
+}
+.scroll-back-to-top-wrapper i.fa {
+	line-height: inherit;
+}
+.scroll-back-to-top-wrapper .fa-lg {
+	vertical-align: 0;
+}
+</style></head>
+
+<body class="single single-post postid-16001 single-format-standard">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<nav id="top-navigation">
+		<a href="#drawer" data-target-id="drawer" class="genericon genericon-menu toggle-button"><span class="label">Navigation</span></a>
+		<h3 class="site-title-nav"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h3>
+	</nav>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<h1 class="site-title"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h1>
+			<h2 class="site-description">Security Researcher. RailFan. Foodie</h2>
+		</div><!-- .site-branding -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<div class="hentry-separator">
+	<span class="posted-on"><a href="http://localhost/android-application-security-part-12/" rel="bookmark"><time class="entry-date published" datetime="2015-10-13T21:44:30+00:00">Oct 13th 2015</time><time class="updated" datetime="2015-10-14T15:15:23+00:00">October 14, 2015</time></a></span></div><!-- .entry-meta -->
+
+<article id="post-16001" class="post-16001 post type-post status-publish format-standard hentry category-android category-pentesting category-security">
+	
+	<header class="entry-header">
+		<h1 class="entry-title">Android Application Security Part 12 &#8211; Poor Authentication And Authorization</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p><strong>Poor Authorization and Authentication</strong> hold 5th position in OWASP Mobile Security Top 10. In this post i will be demonstrating some of the scenarios which falls under <strong>Poor Authorization and Authentication</strong> category.So here we Begin <img src="http://localhost/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<h3 id="activitiesvulnerabilties">Activities Vulnerabilties</h3>
+<p>Most of the time after authentication on an Android Application , it shift to a new activity which basically users are aware off. But developers keep those activities exported and even without custom permissions.</p>
+<ul>
+<li>
+<p>If you would see in the HerdFinancial Application then you will find that <strong>org.owasp.goatdroid.herdfinancial.activities.Main</strong> is exported and also it doesn&#8217;t even have any custom permissions.</p>
+</li>
+<li>
+<p>You can simply pass an intent through Drozer to start that particular activity.<br />
+<img src="https://i.imgur.com/CqQbeyn.png" alt="" title="" /></p>
+</li>
+<li>
+<p>After that you will see that Herfinancial Application has been started with default account i.e with the account number <strong>1234567890</strong> and now you can do sort of stuff like transfer the money to someone else account. How scary it would be if something like this exist for our Banking apps.<br />
+<img src="https://i.imgur.com/SQ0Z4LX.png" alt="" title="" /></p>
+</li>
+</ul>
+<h3 id="usernameenumerationissue">Username Enumeration Issue</h3>
+<p>Username Enumeration is a kind of flaw in which using some feature of an application we can figure out whether a particular username exists or not. I have tried to register with the username <strong>aditya</strong> but i already had an account with that username in that particular application. So application an message that &#8220;Username already registered&#8221;. But this kind of behaviour inform about which users are existing on that particular application, now these usernames can be used to perform other attacks like bruteforce attacks for those particular username/password combination.</p>
+<p><img src="https://i.imgur.com/UKnSIsN.png" alt="" title="" /></p>
+<h3 id="bruteforceattacks">Brute Force Attacks</h3>
+<p>Most of the time developers place different implementation at backend. Like for the web application there is always an Brute-Force protection mechanism but in the case of mobile application rarely any application have such implementation at their server side.</p>
+<h3 id="insecureauthorization">Insecure Authorization</h3>
+<p>Most of the application implement such authorization techiques which sometimes create very serious vulnerability. Below i will be describing such an example in which response from the server contains account number of that authenticated user. So we can change that account number to someone else account number and then we will completely own that account.</p>
+<ul>
+<li>
+<p>First open up your Burp Suite and turn Intercept On.</p>
+</li>
+<li>
+<p>Then open up that HerdFinancial Application and type your credentials.<br />
+<img src="https://i.imgur.com/oQsuoTH.png" alt="" title="" /></p>
+</li>
+<li>Now the request will show up in Burp Suite ,forward it.<br />
+<img src="https://i.imgur.com/NCAv647.png" alt="" title="" /></li>
+<li>Now response from server will contain accountnumber , as in my case it was <strong>7894561230</strong>.<br />
+<img src="https://i.imgur.com/qLlXW71.png" alt="" title="" /></li>
+<li>You can change that accountnumber to someone else account number, like i changed from <strong>7894561230</strong> to <strong>1234567890</strong>.<br />
+<img src="https://i.imgur.com/9m3KxKw.png" alt="" title="" /></li>
+</ul>
+<p>Now if you will use HerdFinancial Application then you will see that it has actually all the details of account <strong>1234567890</strong> and you can also make an transfer on behalf of <strong>1234567890</strong> . So that basically mean that you now own an Bank account of someone else just by knowing his/her account number.</p>
+<h3 id="authorizehardwareid">Authorize Hardware ID</h3>
+<p>If you would closely operate Herd Financial Application then you will find that there is an Authorize Device option there. HerdFinancial Application can also authorize on basis on Device Id but this is a flawed method as Device Id can be forged.</p>
+<p><img src="https://i.imgur.com/i8xJ2uc.png" alt="" title="" /><br />
+<img src="https://i.imgur.com/7sZB8NN.png" alt="" title="" /><br />
+<img src="https://i.imgur.com/TOygdbd.png" alt="" title="" /></p>
+<ul>
+<li>After clicking yes in the above screen you will find a similar request in your BurpSuite panel.<br />
+<img src="https://i.imgur.com/lLqa4l9.png" alt="" title="" /></li>
+</ul>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<span class="cat-links"><span class="label">Posted in</span> <a href="http://localhost/category/android/" rel="category tag">Android</a>, <a href="http://localhost/category/pentesting/" rel="category tag">Pentesting</a>, <a href="http://localhost/category/security/" rel="category tag">Security</a></span>	</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<div class="nav nav-previous"><a href="http://localhost/android-application-security-part-11/" rel="prev"><span class="label">Previously</span><span class="title">Android Application Security Part 11 &#8211; Unintended Data Leakage</span></a></div><div class="nav nav-next"><a href="http://localhost/android-application-security-part-13/" rel="next"><span class="label">Read Next</span><span class="title">Android Application Security Part 13 &#8211; Broken Cryptography</span></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+			<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//manifestsecurity.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+
+	</div><!-- #content -->
+
+	<div id="drawer">
+		<div class="drawer-content sliding-content" data-direction="left">
+			<div class="drawer-header">
+				<a href="#" data-target-id="drawer" class="genericon genericon-close-alt toggle-button">
+					<span class="label">Close Drawer</span>
+				</a>
+				<h2 class="site-name">Aditya Agrawal</h2>
+			</div><!-- .drawer-header -->
+
+			<div class="drawer-navigation">
+				<div class="menu-primary-navigation-container"><ul id="menu-primary-navigation" class="menu"><li id="menu-item-13955" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13955"><a href="http://localhost/appie/">Appie</a></li>
+<li id="menu-item-12318" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12318"><a href="https://pentestbox.com/" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://pentestbox.com/', 'Pentest Box');">Pentest Box</a></li>
+<li id="menu-item-13954" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13954"><a href="http://localhost/android-application-security/">Android Security Series</a></li>
+<li id="menu-item-18794" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18794"><a href="https://iotsecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://iotsecuritywiki.com', 'IoT Security Wiki');">IoT Security Wiki</a></li>
+<li id="menu-item-8417" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8417"><a href="https://mobilesecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://mobilesecuritywiki.com', 'Mobile Security Wiki');">Mobile Security Wiki</a></li>
+<li id="menu-item-13956" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13956"><a href="http://localhost/blog-series/">Blog Series</a></li>
+<li id="menu-item-12" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12"><a href="http://localhost/aditya/">About</a></li>
+<li id="menu-item-13" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13"><a href="http://twitter.com/exploitprotocol" onclick="__gaTracker('send', 'event', 'outbound-widget', 'http://twitter.com/exploitprotocol', 'Twitter');">Twitter</a></li>
+<li id="menu-item-13957" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13957"><a href="http://localhost/contact/">Contact</a></li>
+</ul></div>			</div><!-- .drawer-navigation -->
+			
+					</div><!-- .drawer-content -->
+
+		<div class="drawer-overlay toggle-button" data-target-id="drawer"></div>
+	</div><!-- #drawer -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+
+			<a href="http://wordpress.org">Proudly powered by WordPress</a>
+			<span class="sep"> | </span>
+			Theme: <a href="http://fikrirasy.id/portfolio/materialist/">Materialist</a>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<div class="scroll-back-to-top-wrapper">
+	<span class="scroll-back-to-top-inner">
+					<i class="fa fa-2x fa-arrow-circle-up"></i>
+			</span>
+</div><script type='text/javascript'>
+/* <![CDATA[ */
+var scrollBackToTop = {"scrollDuration":"500","fadeDuration":"0.5"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://localhost/wp-content/plugins/scroll-back-to-top/assets/js/scroll-back-to-top.js'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/skip-link-focus-fix.js?ver=20130115'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/comment-reply.min.js?ver=4.4.4'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/wp-embed.min.js?ver=4.4.4'></script>
+
+</body>
+</html>

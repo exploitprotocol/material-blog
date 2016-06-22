@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://localhost/xmlrpc.php">
+
+<title>Android Application Security Part 4-Get to know about your Arsenals &#8211; Aditya Agrawal</title>
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Feed" href="http://localhost/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Comments Feed" href="http://localhost/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Android Application Security Part 4-Get to know about your Arsenals Comments Feed" href="http://localhost/android-application-security-part-4/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/localhost\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.4"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-awesome-css'  href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' type='text/css' media='screen' />
+<link rel='stylesheet' id='materialist-google-fonts-css'  href='//fonts.googleapis.com/css?family=Roboto%3A400italic%2C700italic%2C300%2C700%2C300italic%2C400&#038;ver=4.4.4' type='text/css' media='all' />
+<link rel='stylesheet' id='materialist-style-css'  href='http://localhost/wp-content/themes/materialist/style.css?ver=4.4.4' type='text/css' media='all' />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v5.5 - Universal enabled - https://www.monsterinsights.com/ -->
+<script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-58669007-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('set', 'anonymizeIp', true);
+	__gaTracker('send','pageview');
+
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/materialist.js?ver=20150121'></script>
+<link rel='https://api.w.org/' href='http://localhost/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Android Application Security Part 3-Android Application Fundamentals' href='http://localhost/android-application-security-part-3/' />
+<link rel='next' title='Android Application Security Part 5 &#8211; Starting Drozer' href='http://localhost/android-application-security-part-5/' />
+<meta name="generator" content="WordPress 4.4.4" />
+<link rel="canonical" href="http://localhost/android-application-security-part-4/" />
+<link rel='shortlink' href='http://localhost/?p=245' />
+<link rel="alternate" type="application/json+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fandroid-application-security-part-4%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fandroid-application-security-part-4%2F&#038;format=xml" />
+
+<style>
+.scroll-back-to-top-wrapper {
+    position: fixed;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	text-align: center;
+	z-index: 99999999;
+    background-color: #777777;
+	color: #eeeeee;
+	width: 50px;
+	height: 48px;
+	line-height: 48px;
+	right: 30px;
+	bottom: 30px;
+	padding-top: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.scroll-back-to-top-wrapper:hover {
+	background-color: #888888;
+  color: #eeeeee;
+}
+.scroll-back-to-top-wrapper.show {
+    visibility:visible;
+    cursor:pointer;
+	opacity: 1.0;
+}
+.scroll-back-to-top-wrapper i.fa {
+	line-height: inherit;
+}
+.scroll-back-to-top-wrapper .fa-lg {
+	vertical-align: 0;
+}
+</style></head>
+
+<body class="single single-post postid-245 single-format-standard">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<nav id="top-navigation">
+		<a href="#drawer" data-target-id="drawer" class="genericon genericon-menu toggle-button"><span class="label">Navigation</span></a>
+		<h3 class="site-title-nav"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h3>
+	</nav>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<h1 class="site-title"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h1>
+			<h2 class="site-description">Security Researcher. RailFan. Foodie</h2>
+		</div><!-- .site-branding -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<div class="hentry-separator">
+	<span class="posted-on"><a href="http://localhost/android-application-security-part-4/" rel="bookmark"><time class="entry-date published" datetime="2015-01-10T20:08:00+00:00">Jan 10th 2015</time><time class="updated" datetime="2015-10-13T13:28:37+00:00">October 13, 2015</time></a></span></div><!-- .entry-meta -->
+
+<article id="post-245" class="post-245 post type-post status-publish format-standard hentry category-android category-pentesting category-security">
+	
+	<header class="entry-header">
+		<h1 class="entry-title">Android Application Security Part 4-Get to know about your Arsenals</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>For all the demos below i have used FourGoats Application from <a href="https://github.com/jackMannino/OWASP-GoatDroid-Project" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/jackMannino/OWASP-GoatDroid-Project', 'OWASP-Goatdroid-Project');">OWASP-Goatdroid-Project</a>.  You can download from <a href="http://sourceforge.net/projects/appiefiles/files/OWASP%20GoatDroid-%20FourGoats%20Android%20App.apk/download" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://sourceforge.net/projects/appiefiles/files/OWASP%20GoatDroid-%20FourGoats%20Android%20App.apk/download', 'here');">here</a></p>
+<h3 id="androiddebugbridge">Android Debug Bridge</h3>
+<p>Below i have described must know methods of adb but i would recommend you to go through <a href="https://developer.android.com/tools/help/adb.html" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://developer.android.com/tools/help/adb.html', 'ADB Documentation');">ADB Documentation</a> to gain a better understanding of it.</p>
+<ul>
+<li>adb devices &#8211; It Prints a list of all attached emulator/device instances.<img src="https://i.imgur.com/FGOArow.png" alt="" title="" /></li>
+<li>
+<div id="ADBinstall">adb install</div>
+<p> &#8211; It is used to install an apk file in to an Emulated/Connected Device.  We will be pushing apk which we have downloaded above.<img src="https://i.imgur.com/RcpvHLs.png" alt="" title="" /></li>
+<li>adb pull &#8211; It is used to fetch some data from Emulated device(remote) to local host(local).<br />
+<img src="https://i.imgur.com/6LuBHUQ.png" alt="" title="" /></li>
+<li>adb push &#8211; It is used to push some data from local host(local) to Emulated Device(remote).Similarly we can also push file to the device.<img src="https://i.imgur.com/HTftZH4.png" alt="" title="" /></li>
+<li>adb forward &#8211; Forwards socket connections from a specified local port to a specified remote port on the emulator/device instance.<img src="https://i.imgur.com/AltyWY2.png" alt="" title="" /></li>
+<li>adb shell &#8211; Adb provides a Unix shell that you can use to run a variety of commands on an emulator or connected device.<br />
+<img src="https://i.imgur.com/PizWhrP.png" alt="" title="" /></li>
+</ul>
+<p>Although there are some other utilities, Activity Manager(am) and Package Manager(pm) in adb shell. But we will use drozer for the same commands just because drozer offers to do task simply.</p>
+<h3 id="drozer">Drozer</h3>
+<p>Drozer allows you to search for security vulnerabilities in apps and devices <strong>by assuming the role of an app</strong> and interacting with the Dalvik VM, other apps’ Inter Process Communication(IPC) endpoints and the underlying OS.</p>
+<p>As Drozer is a very important tool in Android Application Security Assessment, i have written a seperate post for it.</p>
+<blockquote>
+<p><a href="http://manifestsecurity.com/android-application-security-part-5/" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://manifestsecurity.com/android-application-security-part-5/', 'Android Application Security Part 5- Firing Drozer');">Android Application Security Part 5- Firing Drozer</a></p>
+</blockquote>
+<h3 id="apktoolusage">Apktool Usage</h3>
+<ul>
+<li>Type <strong>apktool</strong> in the Appie and it will list the default options of apktool.<img src="https://i.imgur.com/OiOurWs.png" alt="" title="" /></li>
+<li>Mainly we will be decoding an APK file for that we need to run <strong>apktool d filename.apk</strong>. After running that , it will create a folder in the same directory with decompiled files in it.<img src="https://i.imgur.com/8ZaOnSB.png" alt="" title="" /></li>
+</ul>
+<h3 id="dex2jarusage">dex2jar Usage</h3>
+<ul>
+<li>dex2jar is mainly used to convert an APK file in to a jar file containing reconstructed source code.<br />
+<strong>dex2jar filename.apk</strong> command will convert the APK file in to a jar file.<img src="https://i.imgur.com/4SkwtRB.png" alt="" title="" /></li>
+</ul>
+<h3 id="jdguiusage">JD-GUI Usage</h3>
+<ul>
+<li>
+<p>Above we have converted the APK file in to a jar file.</p>
+</li>
+<li>
+<p>Now you can open that jar file in JD-GUI and view that reconstructed source code.</p>
+</li>
+<li>First type <strong>jdgui</strong> in Appie,it will open JD-GUI within the Appie.<br />
+<img src="https://i.imgur.com/1MwnPt4.png" alt="" title="" /></li>
+<li>Then open up the jar file in JD-GUI.<img src="https://i.imgur.com/BgnHz4b.png" alt="" title="" /></li>
+</ul>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<span class="cat-links"><span class="label">Posted in</span> <a href="http://localhost/category/android/" rel="category tag">Android</a>, <a href="http://localhost/category/pentesting/" rel="category tag">Pentesting</a>, <a href="http://localhost/category/security/" rel="category tag">Security</a></span>	</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<div class="nav nav-previous"><a href="http://localhost/android-application-security-part-3/" rel="prev"><span class="label">Previously</span><span class="title">Android Application Security Part 3-Android Application Fundamentals</span></a></div><div class="nav nav-next"><a href="http://localhost/android-application-security-part-5/" rel="next"><span class="label">Read Next</span><span class="title">Android Application Security Part 5 &#8211; Starting Drozer</span></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+			<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//manifestsecurity.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+
+	</div><!-- #content -->
+
+	<div id="drawer">
+		<div class="drawer-content sliding-content" data-direction="left">
+			<div class="drawer-header">
+				<a href="#" data-target-id="drawer" class="genericon genericon-close-alt toggle-button">
+					<span class="label">Close Drawer</span>
+				</a>
+				<h2 class="site-name">Aditya Agrawal</h2>
+			</div><!-- .drawer-header -->
+
+			<div class="drawer-navigation">
+				<div class="menu-primary-navigation-container"><ul id="menu-primary-navigation" class="menu"><li id="menu-item-13955" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13955"><a href="http://localhost/appie/">Appie</a></li>
+<li id="menu-item-12318" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12318"><a href="https://pentestbox.com/" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://pentestbox.com/', 'Pentest Box');">Pentest Box</a></li>
+<li id="menu-item-13954" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13954"><a href="http://localhost/android-application-security/">Android Security Series</a></li>
+<li id="menu-item-18794" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18794"><a href="https://iotsecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://iotsecuritywiki.com', 'IoT Security Wiki');">IoT Security Wiki</a></li>
+<li id="menu-item-8417" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8417"><a href="https://mobilesecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://mobilesecuritywiki.com', 'Mobile Security Wiki');">Mobile Security Wiki</a></li>
+<li id="menu-item-13956" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13956"><a href="http://localhost/blog-series/">Blog Series</a></li>
+<li id="menu-item-12" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12"><a href="http://localhost/aditya/">About</a></li>
+<li id="menu-item-13" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13"><a href="http://twitter.com/exploitprotocol" onclick="__gaTracker('send', 'event', 'outbound-widget', 'http://twitter.com/exploitprotocol', 'Twitter');">Twitter</a></li>
+<li id="menu-item-13957" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13957"><a href="http://localhost/contact/">Contact</a></li>
+</ul></div>			</div><!-- .drawer-navigation -->
+			
+					</div><!-- .drawer-content -->
+
+		<div class="drawer-overlay toggle-button" data-target-id="drawer"></div>
+	</div><!-- #drawer -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+
+			<a href="http://wordpress.org">Proudly powered by WordPress</a>
+			<span class="sep"> | </span>
+			Theme: <a href="http://fikrirasy.id/portfolio/materialist/">Materialist</a>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<div class="scroll-back-to-top-wrapper">
+	<span class="scroll-back-to-top-inner">
+					<i class="fa fa-2x fa-arrow-circle-up"></i>
+			</span>
+</div><script type='text/javascript'>
+/* <![CDATA[ */
+var scrollBackToTop = {"scrollDuration":"500","fadeDuration":"0.5"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://localhost/wp-content/plugins/scroll-back-to-top/assets/js/scroll-back-to-top.js'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/skip-link-focus-fix.js?ver=20130115'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/comment-reply.min.js?ver=4.4.4'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/wp-embed.min.js?ver=4.4.4'></script>
+
+</body>
+</html>

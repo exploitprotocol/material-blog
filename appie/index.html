@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://localhost/xmlrpc.php">
+
+<title>Appie &#8211; Android Pentesting Portable Integrated Environment &#8211; Aditya Agrawal</title>
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Feed" href="http://localhost/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Comments Feed" href="http://localhost/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Aditya Agrawal &raquo; Appie &#8211; Android Pentesting Portable Integrated Environment Comments Feed" href="http://localhost/appie/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/localhost\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.4"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-awesome-css'  href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' type='text/css' media='screen' />
+<link rel='stylesheet' id='materialist-google-fonts-css'  href='//fonts.googleapis.com/css?family=Roboto%3A400italic%2C700italic%2C300%2C700%2C300italic%2C400&#038;ver=4.4.4' type='text/css' media='all' />
+<link rel='stylesheet' id='materialist-style-css'  href='http://localhost/wp-content/themes/materialist/style.css?ver=4.4.4' type='text/css' media='all' />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v5.5 - Universal enabled - https://www.monsterinsights.com/ -->
+<script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-58669007-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('set', 'anonymizeIp', true);
+	__gaTracker('send','pageview');
+
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/materialist.js?ver=20150121'></script>
+<link rel='https://api.w.org/' href='http://localhost/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.4.4" />
+<link rel="canonical" href="http://localhost/appie/" />
+<link rel='shortlink' href='http://localhost/?p=495' />
+<link rel="alternate" type="application/json+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fappie%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://localhost/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2Fappie%2F&#038;format=xml" />
+
+<style>
+.scroll-back-to-top-wrapper {
+    position: fixed;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	text-align: center;
+	z-index: 99999999;
+    background-color: #777777;
+	color: #eeeeee;
+	width: 50px;
+	height: 48px;
+	line-height: 48px;
+	right: 30px;
+	bottom: 30px;
+	padding-top: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.scroll-back-to-top-wrapper:hover {
+	background-color: #888888;
+  color: #eeeeee;
+}
+.scroll-back-to-top-wrapper.show {
+    visibility:visible;
+    cursor:pointer;
+	opacity: 1.0;
+}
+.scroll-back-to-top-wrapper i.fa {
+	line-height: inherit;
+}
+.scroll-back-to-top-wrapper .fa-lg {
+	vertical-align: 0;
+}
+</style></head>
+
+<body class="page page-id-495 page-template-default">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<nav id="top-navigation">
+		<a href="#drawer" data-target-id="drawer" class="genericon genericon-menu toggle-button"><span class="label">Navigation</span></a>
+		<h3 class="site-title-nav"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h3>
+	</nav>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<h1 class="site-title"><a href="http://localhost/" rel="home">Aditya Agrawal</a></h1>
+			<h2 class="site-description">Security Researcher. RailFan. Foodie</h2>
+		</div><!-- .site-branding -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+			
+				
+<article id="post-495" class="post-495 page type-page status-publish hentry">
+	<header class="entry-header">
+		<h1 class="entry-title">Appie &#8211; Android Pentesting Portable Integrated Environment</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>Appie is a software package that has been pre-configured to function as an Android Pentesting Environment on any windows based machine without the need of a Virtual Machine(VM) or dualboot.<br />
+It is completely portable and can be carried on <strong>USB stick or your smartphone</strong>. It is one of its kind Android Security Analysis Tool and is a one stop answer for all the tools needed in Android Application Security Assessment, Android Forensics, Android Malware Analysis.</p>
+<ul>
+<li><a href="#Why_Appie_Created">Why Appie Was Created?</a></li>
+<li><a href="#Difference_Between_Appie_And_VMs">Difference between Appie and Existing Environments</a></li>
+<li><a href="#Tools_Included_in_Appie">Tools Included in Appie</a></li>
+<li><a href="#AppieMeaning">Appie Meaning?</a></li>
+<li><a href="#Getting_Started">Getting Started</a></li>
+<li><a href="#Usage">Usage</a>
+<ul>
+<li><a href="#androguard">Androguard</a></li>
+<li><a href="#pidcat">Pidcat</a></li>
+<li><a href="#wireshark">Wireshark</a></li>
+<li><a href="#burpsuite">Burp Suite</a></li>
+<li><a href="#volatility">Volatility Framework</a></li>
+<li><a href="#JD_GUI">JD-GUI Usage</a></li>
+<li><a href="#drozer">Drozer Usage</a></li>
+<li><a href="#keywords">Keywords</a></li>
+</ul>
+</li>
+<li><a href="#FAQ">Frequently Asked Questions</a></li>
+<li><a href="#demovideo">Demo Video</a></li>
+<li><strong><a href="#Download">Download</a></strong></li>
+<li><a href="#Donate">Donate</a></li>
+<li><a href="#Feedback">Suggestions &amp; Feedback</a></li>
+<li><a href="#WhatTheyAreSaying">What they are saying</a></li>
+</ul>
+<h3 id="dividwhy_appie_createdwhyappiewascreateddiv">
+<div id="Why_Appie_Created">Why Appie was created ?</div>
+</h3>
+<p>Just because i wanted something awesome instead of traditional virtual machines.</p>
+<h3 id="dividdifference_between_appie_and_vmsdifferencebetweenappieandexistingenvironmentsdiv">
+<div id="Difference_Between_Appie_And_VMs">Difference between Appie and existing environments ?</div>
+</h3>
+<ul>
+<li>Tools contained in Appie are running on host machine instead of running on virtual machine.</li>
+<li>Less Space Needed(Only around 1.5GB required compared to atleast 10 GB of Virual Machine)</li>
+<li>As the name suggests it is completely Portable i.e it can be carried on <strong>USB Stick or on your own smartphone</strong> and your pentesting environment will go wherever you go without any configuring changes.</li>
+<li>Awesome Interface <img src="http://localhost/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /></li>
+</ul>
+<h3 id="dividappiemeaningwhatdoesappiemeandiv">
+<div id="AppieMeaning">What Does Appie Mean ?</div>
+</h3>
+<p>In the search for an awesome name, i found <a href="http://manifestsecurity.com/appie/" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://manifestsecurity.com/appie/', 'Appie');">Appie</a> which stands for Android Pentesting Portable Integrated Environment and the most important thing the name define itself.</p>
+<h3 id="dividgetting_startedgettingstarteddiv">
+<div id="Getting_Started">Getting Started</div>
+</h3>
+<ul>
+<li><a href="#Download">Download</a> the file.</li>
+<li>Open the installer file and then complete installation process.</li>
+<li>Go through the <a href="#Usage">Usage</a></li>
+</ul>
+<p>I have also started a series on <a href="http://manifestsecurity.com/android-application-security/" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://manifestsecurity.com/android-application-security/', 'Android Application Security');">Android Application Security</a> for the ones who wants to learn about android application security. In that series i have used <a href="http://manifestsecurity.com/appie" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://manifestsecurity.com/appie', 'Appie');">Appie</a> extensively.</p>
+<h3 id="dividtools_included_in_appiewhichtoolsareincludedinappiediv">
+<div id="Tools_Included_in_Appie">Which tools are included in Appie ?</div>
+</h3>
+<ul>
+<li><a href="https://developer.android.com/tools/help/adb.html" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://developer.android.com/tools/help/adb.html', 'Android Debug Bridge');">Android Debug Bridge</a></li>
+<li><a href="https://github.com/iBotPeaches/Apktool" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/iBotPeaches/Apktool', 'Apktool');">Apktool</a></li>
+<li><a href="https://github.com/AndroBugs/AndroBugs_Framework" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/AndroBugs/AndroBugs_Framework', 'AndroBugs Framework');">AndroBugs Framework</a></li>
+<li><a href="https://github.com/androguard/androguard" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/androguard/androguard', 'AndroGuard');">AndroGuard</a></li>
+<li><a href="https://github.com/maaaaz/androwarn" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/maaaaz/androwarn', 'Androwarn');">Androwarn</a></li>
+<li><a href="https://atom.io/" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://atom.io/', 'Atom');">Atom</a></li>
+<li><a href="http://bytecodeviewer.com/" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://bytecodeviewer.com/', 'ByteCodeViewer');">ByteCodeViewer</a></li>
+<li><a href="http://portswigger.net/burp/download.html" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://portswigger.net/burp/download.html', 'Burp Suite');">Burp Suite</a></li>
+<li><a href="https://www.mwrinfosecurity.com/products/drozer/" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://www.mwrinfosecurity.com/products/drozer/', 'Drozer');">Drozer</a></li>
+<li><a href="https://code.google.com/p/dex2jar/" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://code.google.com/p/dex2jar/', 'dex2jar');">dex2jar</a></li>
+<li><a href="https://developer.android.com/tools/help/adt.html" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://developer.android.com/tools/help/adt.html', 'Eclipse IDE with Android Developer Tools');">Eclipse IDE with Android Developer Tools</a></li>
+<li><a href="https://github.com/iSECPartners/Introspy-Analyzer" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/iSECPartners/Introspy-Analyzer', 'Introspy-Analyzer');">Introspy-Analyzer</a></li>
+<li><a href="http://docs.oracle.com/javase/7/docs/technotes/tools/windows/jdb.html" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://docs.oracle.com/javase/7/docs/technotes/tools/windows/jdb.html', 'Java Debugger');">Java Debugger</a></li>
+<li><a href="https://github.com/skylot/jadx" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/skylot/jadx', 'jadx');">jadx</a></li>
+<li><a href="http://jd.benow.ca/" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://jd.benow.ca/', 'Jd-Gui');">Jd-Gui</a></li>
+<li><a href="https://github.com/JakeWharton/pidcat" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/JakeWharton/pidcat', 'Pidcat');">Pidcat</a></li>
+<li><a href="http://sqlitebrowser.org/" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://sqlitebrowser.org/', 'SQLite Database Browser');">SQLite Database Browser</a></li>
+<li><a href="https://github.com/sqlmapproject/sqlmap" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/sqlmapproject/sqlmap', 'SQLmap');">SQLmap</a></li>
+<li><a href="https://github.com/volatilityfoundation" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/volatilityfoundation', 'Volatility Framework');">Volatility Framework</a></li>
+<li>It also has Java Runtime Environment(JRE) and python installed, so you can run Appie on even a freshly installed windows installation.</li>
+<li>It also has Mozilla Firefox with <a href="https://addons.mozilla.org/en-US/firefox/collections/pentestbox/pentestbox-addons-collection/" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://addons.mozilla.org/en-US/firefox/collections/pentestbox/pentestbox-addons-collection/', 'some security addons');">some security addons</a>.</li>
+<li>Nearly all UNIX commands like ls, cat, chmod, cp, find, git, unzip, mkdir, ssh, openssl, keytool, jarsigner and many others.</li>
+<li>It has also has vulnerable android applications like  <a href="https://github.com/jackMannino/OWASP-GoatDroid-Project" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/jackMannino/OWASP-GoatDroid-Project', 'Owasp GoatDroid Project Configured');">Owasp GoatDroid Project Configured</a> and <a href="https://github.com/dineshshetty/Android-InsecureBankv2" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/dineshshetty/Android-InsecureBankv2', 'InsecureBank-v2');">InsecureBank-v2</a> to test your skills on them.</li>
+</ul>
+<h3 id="dividusageusagediv">
+<div id="Usage">Usage</div>
+</h3>
+<ul>
+<li>Apktool can be used by the keyword <strong>apktool</strong>.<br />
+<img src="https://imgur.com/Noy4N8G.png" alt="" title="" /></li>
+<li>AndroBugs Framework can be used by the keyword <strong>androbugs</strong><br />
+<img src="https://imgur.com/FKPvBo1.png" alt="" title="" /></li>
+<li>
+<div id="androwarn">Androwarn Usage</div>
+<p>Type <strong>androwarn</strong> in the console to open androwarn directory and then see <a href="https://github.com/maaaaz/androwarn#usage" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/maaaaz/androwarn#usage', 'usage');">usage</a> for it&#8217;s usage.</li>
+<li>
+<div id="androguard">Androguard Usage</div>
+<p>There are several files in androguard project. You can look about their individual usage on their <a href="https://github.com/androguard/androguard" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://github.com/androguard/androguard', 'website');">website</a>. For example, if you wanted to use <strong>androgui</strong> then just type <strong>androgui</strong> on the terminal.</li>
+<li>To open atom, type <strong>atom</strong> in the terminal and it will open Atom text editor in other half of the terminal. It has been customized like this to have a better experience while testing. No hassle of Tabs/Windows.<br />
+<img src="https://imgur.com/9vzcfCq.png" alt="" title="" /></li>
+<li>Type <strong>bytecodeviewer</strong> to open ByteCodeViewer.</li>
+<li>
+<div id="burpsuite">Burpsuite</div>
+<p>Type <strong>burpuite</strong> in the Appie console to open up BurpSuite.<br />
+<img src="https://i.imgur.com/u9uAFzV.png" alt="" title="" /></p>
+</li>
+<li>
+<div id="drozer">Drozer Usage</div>
+<ul>
+<li>Type in <strong>drozer console connect</strong> and drozer application will load up in the right half.<br />
+<img src="https://i.imgur.com/fLL6B59.png" alt="" title="" /></li>
+</ul>
+</li>
+<li><strong>eclipse</strong> can be used to launch Eclipse IDE for Android Application Development.</li>
+<li>use <strong>firefox</strong> to open up Mozilla Firefox.</li>
+<li>
+<div id="JD_GUI">Jd-GUI Usage</div>
+<ul>
+<li>Type <strong>jdgui</strong> in the console and a new tab will open with JD-GUI in it .<br />
+<img src="https://i.imgur.com/TfJ0oZM.png" alt="" title="" /></li>
+</ul>
+</li>
+<li>
+<p>Type <strong>jadx</strong> to use jadx.</p>
+</li>
+<li>
+<div id="pidcat">Pidcat Usage</div>
+<p>In order view logcat entries for <strong>org.owasp.goatdroid.fourgoats</strong>, type <strong>pidcat org.owasp.goatdroid.fourgoats</strong> in Appie and you would see something similar.<br />
+<img src="https://i.imgur.com/BJWGslG.png" alt="" title="" /></p>
+<ul>
+<li>Use <strong>sqlitebrowser</strong> to open SQLite Database Browser.</li>
+</ul>
+</li>
+<li>
+<p>Type <strong>sqlmap</strong> to use SQLmap.</p>
+</li>
+<li>
+<div id="volatility">Volatility Usage</div>
+<p>Type <strong>volatility</strong> in the console to use this.<br />
+<img src="https://i.imgur.com/c4CJOsr.png" alt="" title="" /></p>
+</li>
+<li>
+<div id="wireshark">Wireshark Usage</div>
+<p>Type <strong>wireshark</strong> in Appie console to open wireshark within Appie.<br />
+<img src="https://i.imgur.com/aOsTSiI.png" alt="" title="" /></p>
+</li>
+</ul>
+<h3 id="dividfaqfrequentlyaskedquestionsdiv">
+<div id="FAQ">Frequently Asked Questions</div>
+</h3>
+<p><strong>Q. When it will be available for Linux/Mac?</strong></p>
+<p>Currently this is only available for windows but yes i am figuring out something for Linux/Mac as well. But for now you can run Appie on Win7/Win8 Virtual machine.  Appie doesn&#8217;t need any software pre-installed on the machine, it contain all the environments like Java Runtime Environment, Python Environment neccessary for it&#8217;s running.</p>
+<p><strong>Q. I am interested in Android Security and willing to learn it. Do you know any resources where i could start ?</strong></p>
+<p>Yes. Actually myself have started an <a href="https://manifestsecurity.com/android-application-security/" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://manifestsecurity.com/android-application-security/', 'Android Application Security Series');">Android Application Security Series</a> in which i have started from the very basics and explained each vulnerability in detail. Hope you will find it useful:)</p>
+<p><strong>Q. How can i work in FullScreen in Appie ?</strong></p>
+<p>Just press <code>Alt + Enter</code> while using Appie to go in FullScreen Mode and do the same to come back in normal mode.</p>
+<p><strong>Q. How could i resize Appie ?</strong></p>
+<p>If you move your cursor along it edges then outer boundary start appearing and you can resize using it but this procedure is something everyone is not able to follow.</p>
+<p>There is an alternative way to do this</p>
+<ul>
+<li>Right click on the top bar and then click on settings.</li>
+<li>Then a new window will appear then uncheck &#8220;Hide caption Always&#8221; and then save settings as given below.<br />
+<img src="https://i.imgur.com/XClDvwz.png" alt="" title="" /></li>
+<li>Then Appie would look something like this.<br />
+<img src="https://i.imgur.com/8qChYCK.png" alt="" title="" /></li>
+<li>You can now resize the window as you would like. After that you can again go to setting and check that option again and save settings.</li>
+</ul>
+<p>Appie will save your current windows size and will open as it is when you open next time.</p>
+<p><strong>Q. Why is Appie throwing up red flags with being malware?</strong></p>
+<p>Actually Appie is packed by <a href="https://en.wikipedia.org/wiki/UPX" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://en.wikipedia.org/wiki/UPX', 'UPX');">UPX</a> which is identified as malware by some antivirus softwares. You can scan Appie.exe with virtustotal.com and see the result. As an alternative there is a Appie.bat file in the same directory which upon running won&#8217;t show any warnings.</p>
+<p><strong>Q. ADB is not running properly.</strong></p>
+<p>Actually in order to run adb with your emualtor, you need to set the path of Android SDK Tools in your emulator.</p>
+<p>Android SDK TOOLS Path:- <code>path_to_appie/bin/adt/sdk/</code></p>
+<p>If you are using Genymotion Device as your emulator then follow the procedure below.</p>
+<ul>
+<li>First go to Genymotion then click on settings.</li>
+<li>Then in the ADB tab, select &#8220;Use Custom Android SDK Tools&#8221;</li>
+<li>Then select the path of sdk folder which is located at <code>path_to_appie/bin/adt/sdk/</code></li>
+</ul>
+<p><img src="https://i.imgur.com/p0D8peg.png" alt="" title="" />    </p>
+<h3 id="dividdemovideodemovideodiv">
+<div id="demovideo">Demo Video</div>
+</h3>
+<p>Below is short demonstration video of Appie.</p>
+<p><iframe width="853" height="480" src="https://www.youtube.com/embed/klF-i0HVuQ0" frameborder="0" allowfullscreen></iframe></p>
+<h3 id="dividdownloaddownloaddiv">
+<div id="Download">Download</div>
+</h3>
+<p>Follow Appie on <a href="https://facebook.com/projectappie" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://facebook.com/projectappie', 'Facebook');">Facebook</a> and <a href="https://twitter.com/projectappie" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://twitter.com/projectappie', 'Twitter');">Twitter</a> for updates about Appie and Android Security.</p>
+<p><a href="http://sourceforge.net/projects/appiefiles/files/AppieV3.1.msi/download" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://sourceforge.net/projects/appiefiles/files/AppieV3.1.msi/download', '');"><img src="https://a.fsdn.com/con/app/sf-download-button" alt="Download Appie" title="" /></a></p>
+<p><a href="https://manifestsecurity.com/AppieV3.1.torrent" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://manifestsecurity.com/AppieV3.1.torrent', '');"><img src="https://i.imgur.com/2CZtyHn.png" alt="" title="" /></a></p>
+<h3 id="dividdonatedonatediv">
+<div id="Donate">Donate</div>
+</h3>
+<p>Found this project interesting? Donate via Paypal or Bitcoin</p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick"><br />
+<input type="hidden" name="hosted_button_id" value="FPEXCUBLJPDWQ"><br />
+<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online."><br />
+<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1"></form>
+<p> Bitcoin : 183W2Nbmx6LX8KYEAXxJ5mSze23ZD5tAWh</p>
+<h3 id="dividfeedbackfeedbackdiv">
+<div id="Feedback">Feedback</div>
+</h3>
+<p>Your feedback is really important to me, without feedback of community Appie would have not existed. If you have any suggestion for tool, feature, or something which would make Appie more awesome, then please fill out the form below.</p>
+<p><iframe src="https://docs.google.com/forms/d/1rSZ9spNa13Zz_UTZJ0faPb2-z8RvZt93AGSZ70fsjxk/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading&#8230;</iframe></p>
+<h3 id="dividwhattheyaresayingwhattheyaresayingdiv">
+<div id="WhatTheyAreSaying">What they are saying ?</div>
+</h3>
+<p>Appie has received awesome response which is something i never expected. See how is Appie being talked about on Internet.</p>
+<ul>
+<li>
+<p>ESET one of the famous antivirus providers has written an article about &#8220;Analyzing Mailcious Apps with <strong>Appie</strong>&#8220;.</p>
+<p>This is how they decribed Appie in their article &#8220;A tool recently released that facilitates this type of analysis is Appie, Android Pentesting Portable Integrated Environment. In addition to an attractive and intuitive user interface, this application provides the basic materials to begin the study of an apk file. It is a lightweight tool suite, whose portability allows us to rapidly assemble a testing laboratory in any Windows.&#8221;</p>
+<p>Here is the <strong><a href="http://www.welivesecurity.com/la-es/2015/01/30/analisis-apps-maliciosas-depuracion-appie/" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://www.welivesecurity.com/la-es/2015/01/30/analisis-apps-maliciosas-depuracion-appie/', 'link');">link</a></strong> to that article.</p>
+<blockquote class="twitter-tweet" lang="en"><p>Análisis de apps maliciosas mediante depuración con Appie <a href="http://t.co/5bYy73xbmT" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://t.co/5bYy73xbmT', 'http://t.co/5bYy73xbmT');">http://t.co/5bYy73xbmT</a></p>
+<p>&mdash; ESET Latinoamérica (@ESETLA) <a href="https://twitter.com/ESETLA/status/561158210212487169" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://twitter.com/ESETLA/status/561158210212487169', 'January 30, 2015');">January 30, 2015</a></p></blockquote>
+<p><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
+</ul>
+<p>Thanks everyone for their love to Appie. I will continue to make Appie more awesome <img src="http://localhost/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Aditya Agrawal<br />
+aditya@manifestsecurity.com | <a href="https://twitter.com/intent/tweet?screen_name=exploitprotocol" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://twitter.com/intent/tweet?screen_name=exploitprotocol', 'Tweet to @exploitprotocol');" class="twitter-mention-button" data-related="exploitprotocol">Tweet to @exploitprotocol</a></p>
+<p><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
+<hr />
+<h3 id="license">License</h3>
+<p>All software included is bundled with own license<br />
+The MIT License (MIT)</p>
+<p>Copyright (c) 2015 Aditya Agrawal</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &#8220;Software&#8221;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+			</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+				<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//manifestsecurity.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+			
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+
+	</div><!-- #content -->
+
+	<div id="drawer">
+		<div class="drawer-content sliding-content" data-direction="left">
+			<div class="drawer-header">
+				<a href="#" data-target-id="drawer" class="genericon genericon-close-alt toggle-button">
+					<span class="label">Close Drawer</span>
+				</a>
+				<h2 class="site-name">Aditya Agrawal</h2>
+			</div><!-- .drawer-header -->
+
+			<div class="drawer-navigation">
+				<div class="menu-primary-navigation-container"><ul id="menu-primary-navigation" class="menu"><li id="menu-item-13955" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-495 current_page_item menu-item-13955"><a href="http://localhost/appie/">Appie</a></li>
+<li id="menu-item-12318" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12318"><a href="https://pentestbox.com/" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://pentestbox.com/', 'Pentest Box');">Pentest Box</a></li>
+<li id="menu-item-13954" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13954"><a href="http://localhost/android-application-security/">Android Security Series</a></li>
+<li id="menu-item-18794" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18794"><a href="https://iotsecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://iotsecuritywiki.com', 'IoT Security Wiki');">IoT Security Wiki</a></li>
+<li id="menu-item-8417" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8417"><a href="https://mobilesecuritywiki.com" onclick="__gaTracker('send', 'event', 'outbound-widget', 'https://mobilesecuritywiki.com', 'Mobile Security Wiki');">Mobile Security Wiki</a></li>
+<li id="menu-item-13956" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13956"><a href="http://localhost/blog-series/">Blog Series</a></li>
+<li id="menu-item-12" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12"><a href="http://localhost/aditya/">About</a></li>
+<li id="menu-item-13" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13"><a href="http://twitter.com/exploitprotocol" onclick="__gaTracker('send', 'event', 'outbound-widget', 'http://twitter.com/exploitprotocol', 'Twitter');">Twitter</a></li>
+<li id="menu-item-13957" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13957"><a href="http://localhost/contact/">Contact</a></li>
+</ul></div>			</div><!-- .drawer-navigation -->
+			
+					</div><!-- .drawer-content -->
+
+		<div class="drawer-overlay toggle-button" data-target-id="drawer"></div>
+	</div><!-- #drawer -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+
+			<a href="http://wordpress.org">Proudly powered by WordPress</a>
+			<span class="sep"> | </span>
+			Theme: <a href="http://fikrirasy.id/portfolio/materialist/">Materialist</a>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<div class="scroll-back-to-top-wrapper">
+	<span class="scroll-back-to-top-inner">
+					<i class="fa fa-2x fa-arrow-circle-up"></i>
+			</span>
+</div><script type='text/javascript'>
+/* <![CDATA[ */
+var scrollBackToTop = {"scrollDuration":"500","fadeDuration":"0.5"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://localhost/wp-content/plugins/scroll-back-to-top/assets/js/scroll-back-to-top.js'></script>
+<script type='text/javascript' src='http://localhost/wp-content/themes/materialist/js/skip-link-focus-fix.js?ver=20130115'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/comment-reply.min.js?ver=4.4.4'></script>
+<script type='text/javascript' src='http://localhost/wp-includes/js/wp-embed.min.js?ver=4.4.4'></script>
+
+</body>
+</html>

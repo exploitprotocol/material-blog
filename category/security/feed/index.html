@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Security &#8211; Aditya Agrawal</title>
+	<atom:link href="http://localhost/category/security/feed/" rel="self" type="application/rss+xml" />
+	<link>http://localhost</link>
+	<description>Security Researcher. RailFan. Foodie</description>
+	<lastBuildDate>Tue, 21 Jun 2016 05:26:12 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.4.4</generator>
+	<item>
+		<title>Android Application Security Part 26 &#8211; Intercept Traffic on Android version after 4.2.2</title>
+		<link>http://localhost/android-application-security-part-26/</link>
+		<comments>http://localhost/android-application-security-part-26/#respond</comments>
+		<pubDate>Wed, 14 Oct 2015 15:02:50 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16210</guid>
+		<description><![CDATA[In this post i will demonstrate to intercept traffic after Android 4.2.2. Most of the android security professionals uses Cydia &#8230;]]></description>
+				<content:encoded><![CDATA[<p>In this post i will demonstrate to intercept traffic after Android 4.2.2. Most of the android security professionals uses <a href="http://www.cydiasubstrate.com/">Cydia Substrate</a> and <a href="https://github.com/iSECPartners/Android-SSL-TrustKiller">Android-SSL-TrustKiller</a> for intercepting traffic but as <a href="http://www.cydiasubstrate.com/">Cydia Substrate</a> is not supported after Android 4.2.2 , it may be a problem to some users who want to pentest app which only works on Kitkat(Android 4.4.4) or Lollipop(Android 5.0.0) .</p>
+<p>So i will be using a <a href="http://repo.xposed.info/module/de.robv.android.xposed.installer">Xposed Framework</a> and <a href="https://github.com/Fuzion24/JustTrustMe">JustTrustMe</a> which is an xposed framework module.</p>
+<ul>
+<li>
+<p>First download Xposed Installer apk from <a href="http://repo.xposed.info/module/de.robv.android.xposed.installer">here</a> and install on your device.</p>
+</li>
+<li>
+<p>Now download JustTrustMe apk from <a href="https://github.com/Fuzion24/JustTrustMe/blob/master/bin/JustTrustMe.apk?raw=true">here</a> and install it on your device.</p>
+</li>
+<li>
+<p>Then open up your Xposed Installer App from your device and open modules in it. Then click on the checkbox to activate that module.<br />
+<img src="https://i.imgur.com/8XHS4kB.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now go to the framework section and choose <strong>Soft Reboot</strong> to reboot and activate that module.<br />
+<img src="https://i.imgur.com/GBaBMag.png" alt="" title="" /></p>
+</li>
+</ul>
+<p>Now if you would try to intercept using your Burp Proxy then you would be able to see the traffic of every apps.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-26/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Install Google Play Store in Genymotion</title>
+		<link>http://localhost/android-application-security-part-25/</link>
+		<comments>http://localhost/android-application-security-part-25/#respond</comments>
+		<pubDate>Wed, 14 Oct 2015 03:02:00 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16042</guid>
+		<description><![CDATA[In this post i will demonstrate how you can install Google Play Store in a Genymotion Device. Switch ON your &#8230;]]></description>
+				<content:encoded><![CDATA[<p>In this post i will demonstrate how you can install <strong>Google Play Store</strong> in a Genymotion Device.</p>
+<ul>
+<li>Switch ON your Genymotion Device. </li>
+<li>Download Google Apps from <a href="http://wiki.cyanogenmod.org/w/Google_Apps#gappsCM11">Cynogenmod</a> </li>
+<li>Drag and Drop the downloaded zip file to Genymotion Device. It will ask for confirmation,confirm it.Then it will start showing some error&#8217;s, ignore for the time being and follow the next steps without opening any installed apps now. </li>
+<li>Go to Settings<br />
+<a href="http://imgur.com/OBvbKvG"><img src="https://i.imgur.com/OBvbKvG.png" alt="" title="source: imgur.com" /></a> </li>
+<li>Tap on Add Account </li>
+<li>Tap on Google<br />
+<a href="http://imgur.com/W5DNEsy"><img src="https://i.imgur.com/W5DNEsy.png" alt="" title="source: imgur.com" /></a></li>
+<li>If you have an existing account then click on existing otherwise you can make a new account.<br />
+<img src="https://i.imgur.com/D8dy0dV.png" alt="" title="" /></li>
+<li>Signin your google account and then allow google update. You will see now your Google account has been linked to this device. Now you easily operate Google Play Store and install other apps through it.<br />
+<a href="http://imgur.com/jdtl4wX"><img src="https://i.imgur.com/jdtl4wX.png" alt="" title="source: imgur.com" /></a></li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-25/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Configuring your Device for Pentesting</title>
+		<link>http://localhost/android-application-security-part-24/</link>
+		<comments>http://localhost/android-application-security-part-24/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 22:01:34 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16040</guid>
+		<description><![CDATA[In the First Part of the series i have shown how we can configure a virtual device for pentesting. In &#8230;]]></description>
+				<content:encoded><![CDATA[<p>In the <a href="https://manifestsecurity.com/android-application-security-part-1">First Part</a> of the series i have shown how we can configure a virtual device for pentesting. In this post i will demonstrate how you can actually configure your real device(phone/tablet/smart watch) for pentesting.</p>
+<ul>
+<li>
+<p>Tap on the build number until it says &#8221; You are now a developer&#8221;<br />
+<img src="https://i.imgur.com/Fhu598E.jpg" alt="" title="" /></p>
+</li>
+<li>
+<p>Go to the Developer Options.<br />
+<img src="https://i.imgur.com/isjuOIR.jpg" alt="" title="" /></p>
+</li>
+<li>
+<p>Tap on <strong>USB Debugging</strong> .<br />
+<img src="https://i.imgur.com/Oencx7m.jpg" alt="" title="" /></p>
+</li>
+<li>
+<p>Connect your Phone with the USB cable and you will see this notification on your Screen .</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/KC4rFQv.jpg" alt="" title="" /></p>
+<ul>
+<li>Now you can also install Drozer agent on your phone or can also get a shell. Note you will be prompted on your phone while connecting using adb.</li>
+</ul>
+<p><img src="https://i.imgur.com/yACCB0H.jpg" alt="" title="" /><br />
+<img src="https://i.imgur.com/cdFkbFE.jpg" alt="" title="" /></p>
+<p><img src="https://i.imgur.com/WRgWm4g.png" alt="" title="" /></p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-24/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Spoofing your location in Play Store</title>
+		<link>http://localhost/android-application-security-part-23/</link>
+		<comments>http://localhost/android-application-security-part-23/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:56:14 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16031</guid>
+		<description><![CDATA[Many a times you have seen that application which you want to assess is only allowed in selected countries, so &#8230;]]></description>
+				<content:encoded><![CDATA[<p>Many a times you have seen that application which you want to assess is only allowed in selected countries, so in that case you won&#8217;t be able to install that application on you android device. But if you can spoof your location to that country in which the application is allowed then you can get access to that application. Below is the procedure of the same.</p>
+<ul>
+<li>
+<p>First install <strong>Hotspot Shield Free VPN Proxy</strong> from Google Play Store.<br />
+<img src="https://i.imgur.com/0XrmuKY.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now connect using it and choose your required country.<br />
+<img src="https://i.imgur.com/Z0WHrZX.png" alt="" title="" /></p>
+</li>
+<li>
+<p>Now go to <strong>Settings</strong> >> <strong>Apps</strong> >> <strong>Google Play Store</strong> and then tap on <strong>Force Stop</strong> and then on <strong>Clear Data</strong>.<br />
+<img src="https://i.imgur.com/sjFrr67.png" alt="" title="" /></p>
+</li>
+<li>Open up <strong>Google Play Store</strong> and now you will be able to search and install the application which is only available in that country.<br />
+<img src="https://i.imgur.com/zfdhCBI.png" alt="" title="" /></li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-23/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 22 &#8211; Developer Backdoor</title>
+		<link>http://localhost/android-application-security-part-22/</link>
+		<comments>http://localhost/android-application-security-part-22/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:55:57 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16029</guid>
+		<description><![CDATA[There are sometimes when developer put a backdoor to a particular application. He/She puts that because he doesn&#8217;t want somebody &#8230;]]></description>
+				<content:encoded><![CDATA[<p>There are sometimes when developer put a backdoor to a particular application. He/She puts that because he doesn&#8217;t want somebody else to access that sensitive piece of Information and sometimes that backdoor is for debugging purposes.</p>
+<p>If you would go through <strong>Login Activity</strong> then you will find that there is a Backdoor. There is a Username-Password combination which turns on some Admin Options.</p>
+<p><img src="https://i.imgur.com/qkdjy10.png" alt="" title="" /></p>
+<p>From the above image we can figure out that </p>
+<p>Username: <strong>customerservice</strong><br />
+Password: <strong>Acc0uNTM@n@g3mEnT</strong></p>
+<p>If you would login with the credentials given above then you will see a similar Interface given below.</p>
+<p><img src="https://i.imgur.com/ejvgLk1.png" alt="" title="" /></p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-22/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 21 &#8211; Exploiting Debuggable Applications</title>
+		<link>http://localhost/android-application-security-part-21/</link>
+		<comments>http://localhost/android-application-security-part-21/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:55:21 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16027</guid>
+		<description><![CDATA[Consider a situation when your mobile is stolen and it is not rooted. If an application is marked as debuggable &#8230;]]></description>
+				<content:encoded><![CDATA[<p>Consider a situation when your mobile is stolen and it is not rooted. If an application is marked as <strong>debuggable</strong> then any attacker can access the application data by assuming the privileges of that application or can run arbitary code under that application permission. In the case of non-debuggable application, attacker would first need to root the device to extract any data. </p>
+<h3 id="howtocheckfordebuggableflag">How to check for debuggable flag ?</h3>
+<p>I will use Sieve to demonstrate this issue.</p>
+<ul>
+<li>
+<p>Decompile .apk file using apktool then open up the AndroidManifest.xml file.</p>
+</li>
+<li>
+<p>Look for <strong>android:debuggable</strong> value in the AndroidManifest.xml file.<br />
+<img src="https://i.imgur.com/Tq59rLD.png" alt="" title="" /></p>
+</li>
+</ul>
+<p>Now to see which application are connected to debugging socker(@jdwp-control), type <strong>adb jdwp</strong> in the console. It will list the PIDs(Process Identifiers) of the applications which can be debugged. </p>
+<p>In order to figure out which PID belong to our application, type <strong>adb jdwp</strong> before running the application you wanted to test.<br />
+    <img src="https://i.imgur.com/cdJh9jt.png" alt="" title="" /></p>
+<p>Now again type <strong>adb jdwp</strong> after opening the application and you will see that there are PIDs added to last result, so among those PIDs there is one PID which belong to our application. In my case there is only one PID <strong>3894</strong> which is added .<br />
+    <img src="https://i.imgur.com/sSa9OMm.png" alt="" title="" /></p>
+<p>Now check whether or not this PID belong to this application, in case you have got more than one PID. It should output name of the application at the end of result like <strong>com.mwr.example.sieve</strong> in my case.<br />
+    <img src="https://i.imgur.com/NhyE1aT.png" alt="" title="" /></p>
+<p>Now to simply demonstrate what an debuggable application can do, i will extract data from application private directory.</p>
+<p>Now with the help of run-as binary we can execute commands as <strong>com.mwr.example.sieve</strong> application.<br />
+<img src="https://i.imgur.com/BEMbiID.png" alt="" title="" /></p>
+<p><strong>Note: Above is the shell access of my personal phone which is not rooted.</strong></p>
+<p>Now you can extract the data or run an arbitary code using application permission like shown below.<br />
+<img src="https://i.imgur.com/1oGGsV5.png" alt="" title="" /></p>
+<p>But if you would try to access any other directory using this method, it won&#8217;t allow you because <strong>com.mwr.example.sieve</strong> doesn&#8217;t have access to it.<br />
+<img src="https://i.imgur.com/9EkidSV.png" alt="" title="" /></p>
+<h3 id="howtofix">How To Fix</h3>
+<p>Fix is very simple, just set <strong>android:debuggable</strong> flag to <strong>false</strong> in AndroidManifest.xml of the application.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-21/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 20 &#8211; Client Side Injections</title>
+		<link>http://localhost/android-application-security-part-20/</link>
+		<comments>http://localhost/android-application-security-part-20/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:55:07 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16025</guid>
+		<description><![CDATA[Client Side Injections holds 7th position in OWASP Mobile Top 10 Javascript Injection: The mobile browser is vulnerable to javascript &#8230;]]></description>
+				<content:encoded><![CDATA[<p>Client Side Injections holds <strong>7th</strong> position in <a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M7">OWASP Mobile Top 10</a></p>
+<ul>
+<li>
+<p><strong>Javascript Injection:</strong> The mobile browser is vulnerable<br />
+to javascript injection as well. Android default <strong>Browser</strong> has also access<br />
+to mobile applications cookies. If you have your Google account attached to device<br />
+then you can use your Google account in Android Browser without authentication.</p>
+</li>
+<li>
+<p>Several application interfaces or language functions can accept data and can be fuzzed to make applications crash. While most of these flaws do not lead to overflows because of the phone’s platforms being managed code, there have been several that have been used as a “userland” exploit in an exploit chain aimed at rooting or jailbreaking devices.</p>
+</li>
+<li>
+<p>Mobile malware or other malicious apps may perform a binary attack against the presentation layer (HTML, JavaScript, Cascading Style Sheets ) or the actual binary of the mobile app&#8217;s executable. These code injections are executed either by the mobile app&#8217;s framework or the binary itself at run-time.</p>
+</li>
+</ul>
+<h3 id="howtofix">How To Fix</h3>
+<ul>
+<li><strong>SQL Injection:</strong> When dealing with dynamic queries or Content-Providers ensure you are using parameterized queries.</li>
+<li><strong>JavaScript Injection (XSS):</strong> Verify that JavaScript and Plugin support is disabled for any WebViews (usually the default).</li>
+<li><strong>Local File Inclusion:</strong> Verify that File System Access is disabled for any WebViews (webview.getSettings().setAllowFileAccess(false);).</li>
+<li><strong>Intent Injection/Fuzzing:</strong> Verify actions and data are validated via an Intent Filter for all Activities.</li>
+</ul>
+<h4 id="reference">Reference</h4>
+<p><a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M7">OWASP Top 10 2014 &#8211; M7</a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-20/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 19 &#8211; Improper Session Handling</title>
+		<link>http://localhost/android-application-security-part-19/</link>
+		<comments>http://localhost/android-application-security-part-19/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:54:48 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16023</guid>
+		<description><![CDATA[Improper Session Handling holds 9th position in OWASP Mobile Top 10. Session handling is very important part after authentication has &#8230;]]></description>
+				<content:encoded><![CDATA[<p>Improper Session Handling holds <strong>9th</strong> position in <a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M8">OWASP Mobile Top 10</a>.</p>
+<p>Session handling is very important part after authentication has been done. Session Management should also be done in secure way to prevent some vulnerable sceanarios. Most of the application have secure mechanism for authentication but very insecure mechanisms for session handling, below i will be describing some of the common scenarios.</p>
+<h3 id="nosessiondestructionatserverside">No session destruction at server side</h3>
+<p>I have seen this one most of the times, most of the applications just send a null cookie when user opt for logout but still that session cookie is valid on server side and is not destroyed after user opted for logout feature.</p>
+<h3 id="cookienotsetassecure">Cookie not set as Secure</h3>
+<p>The secure flag is an option that can be set by the application server when sending a new cookie to the user within an HTTP Response. The purpose of the secure flag is to prevent cookies from being observed by unauthorized parties due to the transmission of a the cookie in clear text.</p>
+<p>To accomplish this goal, browsers which support the secure flag will only send cookies with the secure flag when the request is going to a HTTPS page. Said in another way, the browser will not send a cookie with the secure flag set over an unencrypted HTTP request.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-19/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 18 &#8211; Attacking Broadcast Receivers</title>
+		<link>http://localhost/android-application-security-part-18/</link>
+		<comments>http://localhost/android-application-security-part-18/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:52:20 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16019</guid>
+		<description><![CDATA[To get the list of exported Broadcast Receivers, you can either use drozer or can also look in AndroidManifest.xml file &#8230;]]></description>
+				<content:encoded><![CDATA[<p>To get the list of exported Broadcast Receivers, you can either use drozer or can also look in AndroidManifest.xml file as i did in <a href="">Attacking Activities</a> post. I will be using drozer.</p>
+<p><img src="https://i.imgur.com/hPXAX61.png" alt="" title="" /></p>
+<p>Above is the exported broadcast receiver.</p>
+<p>If you would see in the AndroidManifest.xml file of FourGoats application then you will find action name is <strong>org.owasp.goatdroid.fourgoats.SOCIAL_SMS</strong> and component name as <strong>org.owasp.goatdroid.fourgoats.broadcastreceivers.SendSMSNowReceiver</strong> . So we have to set these parameters in drozer accordingly.</p>
+<p>I have also decompiled the FourGoats apk using dex2jar and opened it with Jd-Gui. Below is the snap of this particular Broadcastreceiver sourcecode.</p>
+<p><img src="https://i.imgur.com/ZgJjfxA.png" alt="" title="" /></p>
+<p>So basically from the above code we can tell that while passing the intent we have to give two inputs &#8220;phoneNumber&#8221; and &#8220;message&#8221;.</p>
+<p><img src="https://i.imgur.com/2KUyiIB.png" alt="" title="" /></p>
+<p>The above command will try to send the messgae to the number <strong>1234</strong> with message <strong>It&#8217;s me Aditya</strong>.But from Android 4.2 further control has been added on the use of SMS. Android will provide a notification if an application attempts to send SMS to a short code that uses premium services which might cause additional charges. The user can choose whether to allow the application to send the message or block it.</p>
+<p><img src="https://i.imgur.com/10v0dCv.png" alt="" title="" /></p>
+<p>But when i modify the phoneNumber to <strong>123456789</strong> it will not show this confirmation dialog because Android doesn&#8217;t conider that number as a Premium Number.</p>
+<p><img src="https://i.imgur.com/qDhuGwc.png" alt="" title="" /></p>
+<p><img src="https://i.imgur.com/JD2lrQy.png" alt="" title="" /></p>
+<p>So in this way an mailicious app can take advantage of some exported BroadcastReceiver of another app.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-18/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Android Application Security Part 17 &#8211; Attacking Activities</title>
+		<link>http://localhost/android-application-security-part-17/</link>
+		<comments>http://localhost/android-application-security-part-17/#respond</comments>
+		<pubDate>Tue, 13 Oct 2015 21:51:25 +0000</pubDate>
+		<dc:creator><![CDATA[Aditya Agrawal]]></dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Pentesting]]></category>
+		<category><![CDATA[Security]]></category>
+
+		<guid isPermaLink="false">http://localhost/?p=16017</guid>
+		<description><![CDATA[As i have defined in Android Application Security Part 3 &#8211; Android Application Fundamentals, an activity is a graphical user &#8230;]]></description>
+				<content:encoded><![CDATA[<p>As i have defined in <a href="https://manifestsecurity.com/android-application-security-part-3/">Android Application Security Part 3 &#8211; Android Application Fundamentals</a>, an activity is a graphical user interface of an application for the user. An application mostly have more than one activity. Each activity is different, for example activity for login of an application is different and for changing settings is different. </p>
+<p>You can use Drozer to find all the activities in an application or you could also see the listed activities in AndroidManifest.xml file.</p>
+<p><img src="http://i.imgur.com/80suO2M.png" alt="" title="" /></p>
+<p>If the appplication is not obfuscated then you can reverse engineer it and see it source code.<br />
+<img src="http://i.imgur.com/Kxz9gks.png" alt="" title="" /><br />
+<img src="https://i.imgur.com/80EtckG.png" alt="" title="" /></p>
+<p><strong>Note: It is not necessary that you will see activities listed like above in case of other application. That is dependent on developer of the application.</strong></p>
+<h3 id="exportedactivities">Exported Activities</h3>
+<p>Exported Activities are those activities which can be accessed by other application on the same device.<br />
+Most of the time after authentication on an Android Application, it shift to a new activity which basically users are aware off(like music playlist after your music player login). But developers keep those activities exported and even without custom permissions.</p>
+<ul>
+<li>
+<p>If you would see in the HerdFinancial Application then you will find that <strong>org.owasp.goatdroid.herdfinancial.activities.Main</strong> is exported and also it doesn&#8217;t even have any custom permissions.</p>
+</li>
+<li>
+<p>You can simply pass an intent through Drozer to start that particular activity.<br />
+<img src="https://i.imgur.com/CqQbeyn.png" alt="" title="" /></p>
+</li>
+<li>
+<p>After that you will see that Herfinancial Application has been started with default account i.e with the account number <strong>1234567890</strong> and now you can do sort of stuff like transfer the money to someone else account. How scary it would be if something like this exist for our Banking apps!<br />
+<img src="https://i.imgur.com/SQ0Z4LX.png" alt="" title="" /></p>
+</li>
+</ul>
+<p>If you are an android developer then you can also make a proof of concept application to demonstrate this behaviour.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://localhost/android-application-security-part-17/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
